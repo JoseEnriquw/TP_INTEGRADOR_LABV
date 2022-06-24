@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 body{
-      background:no-repeat url("fondo2.jpg");
+      background:no-repeat url("../imagenes/fondo2.jpg");
       font-size:18px;
       font-family: Verdana, Geneva, Tahoma, sans-serif
 }

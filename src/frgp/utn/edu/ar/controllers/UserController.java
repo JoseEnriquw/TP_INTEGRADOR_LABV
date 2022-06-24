@@ -45,7 +45,6 @@ public class UserController {
 		return MV;
 	}
 	
-	
 	@RequestMapping(value ="/altaUsuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView validarUsuario(String nombreU, String passU){
 		ModelAndView MV = new ModelAndView();
