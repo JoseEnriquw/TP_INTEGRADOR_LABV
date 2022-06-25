@@ -18,9 +18,7 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
     
-    
-    
-    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
     <title>Document</title>
 </head>
 <body>
@@ -30,7 +28,7 @@
   <div class="container">
       <div class="logo">Biblioteca de Alejandría</div>
       <div class="login-item">
-        <form action="" method="post" class="form form-login">
+        <form action="validar_usuario.html" method="post" class="form form-login">
           <div class="form-field">
             <label class="user" for="login-username"><span class="hidden">Usuario</span></label>
             <input id="login-username" type="text" class="form-input" placeholder="Usuario" required>

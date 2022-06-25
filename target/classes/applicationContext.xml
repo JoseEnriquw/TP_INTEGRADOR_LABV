@@ -57,6 +57,13 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>frgp.utn.edu.ar.entidades.EUsuario</value>
+				<value>frgp.utn.edu.ar.entidades.EGenero</value>
+				<value>frgp.utn.edu.ar.entidades.ENacionalidad</value>
+				<value>frgp.utn.edu.ar.entidades.EAutor</value>
+				<value>frgp.utn.edu.ar.entidades.ELibro</value>
+				<value>frgp.utn.edu.ar.entidades.EBiblioteca</value>
+				<value>frgp.utn.edu.ar.entidades.ECliente</value>
+				<value>frgp.utn.edu.ar.entidades.EPrestamo</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

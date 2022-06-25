@@ -37,80 +37,87 @@ public class UserController {
 	
 	//Inicio
 	
-	@RequestMapping("IrLogin.html")
-	public ModelAndView redireccion(){
+	@RequestMapping("/Login.html")
+	public ModelAndView irLogin(){
 		ModelAndView MV = new ModelAndView();
-		MV.addObject("listaUsuarios",this.service.obtenerUsuarios());
-		MV.setViewName("Usuarios"); 
+		MV.setViewName("Login"); 
 		return MV;
 	}
 	
-	@RequestMapping(value ="/altaUsuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value ="validar_usuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView validarUsuario(String nombreU, String passU){
+		
 		ModelAndView MV = new ModelAndView();
-		
-		EUsuario x = new EUsuario();
-		x.setNombreU(nombreU);
-		x.setPassU(passU);
-		
 		String Message="";
 		
 		try{
 			
-			service.insertarUsuario(x);
-			Message = "Usuario agregado";
+			EUsuario user = service.obtenerUnRegistro(nombreU);
+			if(user==null)
+			{
+				Message=" El usuario "+nombreU+" no existe";
+			}
+			else if(user.getNombreU().equals(nombreU)) 
+			{
+				MV.setViewName("Biblioteca"); 
+				return MV;
+			}
+			else {
+				Message=" Contraseña incorrecta";
+			}
+		
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Message = "No se pudo insertar el usuario";
 		}
-		finally
-		{
 		
-		}
-	
-		MV.setViewName("Usuarios");
 		MV.addObject("Mensaje", Message);
-		MV.addObject("listaUsuarios",this.service.obtenerUsuarios());
-		MV.setViewName("Usuarios"); 
+		MV.setViewName("Login"); 
 		return MV;
 		
 	}
 	
-     
-	@RequestMapping(value ="/eliminarUsuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView eliminarUsuario(Integer id, String nombreU, String passU){
+	@RequestMapping("/Clientes.html")
+	public ModelAndView irClientes(){
 		ModelAndView MV = new ModelAndView();
-		service.eliminarUsuario(id);
-		MV.addObject("listaUsuarios",this.service.obtenerUsuarios());
-		MV.setViewName("Usuarios"); 
-		MV.addObject("Mensaje", "Usuario eliminado");
+		MV.setViewName("Clientes"); 
 		return MV;
 	}
 	
-	@RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
-    public ModelAndView deleteUser(@PathVariable Integer ssoId) {
-		service.eliminarUsuario(ssoId);
+	@RequestMapping("/Todosloslibros.html")
+	public ModelAndView irTodosloslibros(){
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Usuarios");
-		
-		//Actualiza los usuarios
-		MV.addObject("listaUsuarios",this.service.obtenerUsuarios());
-		MV.setViewName("Usuarios"); 
+		MV.setViewName("Todosloslibros"); 
 		return MV;
-    }
+	}
 	
-
- 
-	
-	@RequestMapping(value ="/recargaGrillaUsuarios.html" , method= { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView recargarUsuario(){
+	@RequestMapping("/Biblioteca.html")
+	public ModelAndView irBiblioteca(){
 		ModelAndView MV = new ModelAndView();
-		MV.addObject("listaUsuarios",this.service.obtenerUsuarios());
-		MV.setViewName("Usuarios"); 
+		MV.setViewName("Biblioteca"); 
 		return MV;
-		
+	}
+	
+	@RequestMapping("/Prestamos.html")
+	public ModelAndView irPrestamos(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("Prestamos"); 
+		return MV;
+	}
+	
+	@RequestMapping("/Autores.html")
+	public ModelAndView irAutores(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("Autores"); 
+		return MV;
+	}
+	
+	@RequestMapping("/LogOut.html")
+	public ModelAndView irLogOut(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("LogOut"); 
+		return MV;
 	}
 	
 }
