@@ -58,14 +58,14 @@
 
 						</div>
 						<div class="col-6">
-							<label><b>Fecha de nacimiento:</b></label> <<input type="date" />
+							<label><b>Fecha de nacimiento:</b></label> <input type="date" class="form-control"/>
 
 
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12">
-							<label><b>Nacionalidad:</b></label> <br /> <select name="select">
+						<div class="col-6">
+							<label><b>Nacionalidad:</b></label> <br /> <select name="select" class="form-control">
 								Seleccione
 								<option value="value1">Argentina</option>
 								<option value="value2" selected>Uruguay</option>

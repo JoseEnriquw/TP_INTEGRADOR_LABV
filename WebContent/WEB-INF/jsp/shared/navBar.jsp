@@ -43,6 +43,7 @@
                     <a class="nav-link" href="Prestamos.html">Prestamos</a>
                     <a class="nav-link" href="Autores.html">Autores</a>
                     <a class="nav-link" href="AltaUsuario.html">Usuarios</a>
+                    <a class="nav-link" href="LogOut.html">Cerrar sesión</a>
                 </div>
             </div>
         </div>

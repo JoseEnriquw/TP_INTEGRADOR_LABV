@@ -40,8 +40,8 @@
                             <td>Row 2 Data 2</td>
                             <td>Row 2 Data 2</td>
                             <td>
-                                <button class="btn btn-success" type="button"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger" type="button"><i class="fas fa-times"></i></button>
+                                <button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
                             </td>
                         </tr>
 
@@ -51,13 +51,86 @@
                 </table>
             </div>
         </div>
-        
+        <div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Préstamo</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Biblioteca:</b></label>
+                                    <input type="text" placeholder="Ingrese la biblioteca" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Fecha de préstamo:</b></label>
+                                    <input type="date" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Cant. de páginas:</b></label>
+                                    <input type="number" placeholder="Ingrese la cantidad de páginas" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Cliente:</b></label>
+                                    <input type="text" placeholder="Ingrese el cliente" class="form-control" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEliminar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Préstamo</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <label>¿Desea eleminar este préstamo?</label>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
    
 </main>
 
 
 <script>
+	function openModal(modal) {
+	    $('#myModal' + modal).modal('show');
+	}
     $('#tabla').DataTable({
 
         "language": {

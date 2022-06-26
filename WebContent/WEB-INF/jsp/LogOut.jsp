@@ -20,7 +20,7 @@
     
     
     
-    <link rel="stylesheet" href="css/css.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css" type="text/css">
     <title>Document</title>
 </head>
 <body>

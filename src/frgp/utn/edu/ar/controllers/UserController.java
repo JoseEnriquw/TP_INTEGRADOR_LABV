@@ -148,10 +148,10 @@ public class UserController {
 		return MV;
 	}
 	
-	@RequestMapping("/AltaUsuarios.html")
+	@RequestMapping("/AltaUsuario.html")
 	public ModelAndView irAltaUsuarios(){
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("AltaUsuarios"); 
+		MV.setViewName("AltaUsuario"); 
 		return MV;
 	}
 	

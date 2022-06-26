@@ -43,21 +43,103 @@
                             <td>Venezuela</td>
                             <td>j_gomez@gmail.com</td>
                             <td>
-                                <button class="btn btn-success" type="button"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger" type="button"><i class="fas fa-times"></i></button>
+                                <button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        
+        <div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Autor</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Nombre:</b></label>
+                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Apellido:</b></label>
+                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Correo electrónico:</b></label>
+                                    <input type="email" placeholder="Ingrese el correo electrónico"
+                                           class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Nacionalidad:</b></label>
+                                    <br />
+                                    <select name="select" class="form-control">
+                                        Seleccione
+                                        <option value="value1">Argentina</option>
+                                        <option value="value2" selected>Uruguay</option>
+                                        <option value="value3">Brasil</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEliminar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Autor</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <label>¿Desea eleminar este autor?</label>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
    
 </main>
 
 
 <script>
+	function openModal(modal) {
+	    $('#myModal' + modal).modal('show');
+	}
     $('#tabla').DataTable({
 
         "language": {

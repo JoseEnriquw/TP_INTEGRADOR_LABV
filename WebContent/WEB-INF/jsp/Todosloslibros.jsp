@@ -48,12 +48,8 @@
 							<td>Row 2 Data 2</td>
 							<td>Row 2 Data 2</td>
 							<td>
-								<button class="btn btn-success" type="button">
-									<i class="fas fa-edit"></i>
-								</button>
-								<button class="btn btn-danger" type="button">
-									<i class="fas fa-times"></i>
-								</button>
+								<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
 							</td>
 						</tr>
 
@@ -63,6 +59,95 @@
 				</table>
 			</div>
 		</div>
+		<div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Libro</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Título:</b></label>
+                                    <input type="text" placeholder="Ingrese el titulo" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Fecha de lanzamiento:</b></label>
+                                    <input type="date" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Idioma:</b></label>
+                                    <input type="text" placeholder="Ingrese el idioma" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Cant. de páginas:</b></label>
+                                    <input type="number" placeholder="Ingrese la cantidad de páginas" class="form-control" />
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Autor:</b></label>
+                                    <input type="text" placeholder="Ingrese el autor" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label><b>Descripción:</b></label>
+                                    <input type="text" placeholder="Ingrese la cantidad de páginas" class="form-control" />
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label><b>Géneros:</b></label>
+                                    <input type="text" placeholder="Ingrese el género" class="form-control" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEliminar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Libro</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <label>¿Desea eleminar este libro?</label>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 	</div>
 
@@ -70,6 +155,10 @@
 
 
 	<script>
+	function openModal(modal) {
+        $('#myModal' + modal).modal('show');
+    }
+
     $('#tabla').DataTable({
 
         "language": {
