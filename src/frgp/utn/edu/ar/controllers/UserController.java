@@ -120,4 +120,42 @@ public class UserController {
 		return MV;
 	}
 	
+	@RequestMapping("/AltaAutores.html")
+	public ModelAndView irAltaAutores(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("AltaAutores"); 
+		return MV;
+	}
+	
+	@RequestMapping("/AltaClientes.html")
+	public ModelAndView irAltaClientes(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("AltaClientes"); 
+		return MV;
+	}
+	
+	@RequestMapping("/AltaLibros.html")
+	public ModelAndView irAltaLibros(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("AltaLibros"); 
+		return MV;
+	}
+	
+	@RequestMapping("/AltaPrestamos.html")
+	public ModelAndView irAltaPrestamos(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("AltaPrestamos"); 
+		return MV;
+	}
+	
+	@RequestMapping("/AltaUsuarios.html")
+	public ModelAndView irAltaUsuarios(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("AltaUsuarios"); 
+		return MV;
+	}
+	
+	
+	
+	
 }

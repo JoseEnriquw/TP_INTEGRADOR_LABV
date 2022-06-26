@@ -21,7 +21,8 @@
             </div>
             <div class="card-body">
                 <div class="botones">
-                    <button type="button" class="btn btn-secondary"> Agregar Autor</button>
+                
+                    <a href="AltaAutores.html"> <button type="button" class="btn btn-secondary"> Agregar Autor</button> </a>
                 </div>
                 <table id="tabla" class="table table-dark table-striped tabla table-bordered">
                     <thead>

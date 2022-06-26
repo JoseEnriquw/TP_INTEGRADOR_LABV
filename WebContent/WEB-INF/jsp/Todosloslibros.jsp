@@ -20,10 +20,7 @@
 			</div>
 			<div class="card-body">
 				<div class="botones">
-					<a href="AltaLibros.html">
-						<button type="button" class="btn btn-secondary">Agregar
-							Libro</button>
-					</a>
+					<a href="AltaLibros.html"> <button type="button" class="btn btn-secondary">Agregar Libro</button></a>
 				</div>
 				<table id="tabla"
 					class="table table-dark table-striped tabla table-bordered">
