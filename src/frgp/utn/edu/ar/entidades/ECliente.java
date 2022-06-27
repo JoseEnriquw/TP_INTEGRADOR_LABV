@@ -49,6 +49,19 @@ public class ECliente {
 		
 	}
 	
+	public ECliente(String dni, String nombre, String apellido, ENacionalidad nacionalidad, String email,
+			String direccion, String localidad, String telefono, Date fechaNacimiento) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nacionalidad = nacionalidad;
+		this.email = email;
+		this.direccion = direccion;
+		this.localidad = localidad;
+		this.telefono = telefono;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	public ECliente(Integer id) {
 		this.id = id;
 	}

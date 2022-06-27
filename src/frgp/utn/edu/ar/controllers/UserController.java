@@ -31,7 +31,7 @@ public class UserController {
 		ApplicationContext ctx = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		
-		this.service = (IUsuarioServicio) ctx.getBean("serviceBean");
+		this.service = (IUsuarioServicio) ctx.getBean("serviceBeanUser");
 	}
 	
 	
@@ -78,13 +78,6 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("/Clientes.html")
-	public ModelAndView irClientes(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Clientes"); 
-		return MV;
-	}
-	
 	@RequestMapping("/Todosloslibros.html")
 	public ModelAndView irTodosloslibros(){
 		ModelAndView MV = new ModelAndView();
@@ -124,13 +117,6 @@ public class UserController {
 	public ModelAndView irAltaAutores(){
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("AltaAutores"); 
-		return MV;
-	}
-	
-	@RequestMapping("/AltaClientes.html")
-	public ModelAndView irAltaClientes(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("AltaClientes"); 
 		return MV;
 	}
 	

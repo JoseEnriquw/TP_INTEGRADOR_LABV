@@ -39,23 +39,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1002</td>
-                                <td>33092123</td>
-                                <td>Pepe</td>
-                                <td>Alvarez</td>
-                                <td>Hombre</td>
-                                <td>Argentina</td>
-                                <td>12/07/1989</td>
-                                <td>Av. Palacios 1923</td>
-                                <td>Berazategui</td>
-                                <td>pepe@gmail.com</td>
-                                <td>11 2345-9021</td>
-                                <td>
+                     
+                        	<c:forEach items="${listaClientes}" var="item">
+				
+				               <tr>	
+				                  <td> ${item.id}</label> </td>
+				                  <td>${item.nombreU}</td>
+				                  <td>${item.passU}</td>
+				                   <td>
                                     <button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
                                 	<button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
-                                </td>
-                            </tr>
+                                   </td>
+				               </tr>
+				
+			               </c:forEach>
+                           
 
 
 

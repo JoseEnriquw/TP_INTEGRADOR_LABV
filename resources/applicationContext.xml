@@ -20,25 +20,28 @@
 	<!-- Para que lea los metodos anotados con @Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<!-- CREO EL SERVICIO PARA Cliente -->
+	<bean id="serviceBeanCliente" class="frgp.utn.edu.ar.servicioImpl.ClienteServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanCliente"></property>
+	</bean>
 	
-
+	<!-- EL SERVICIO Cliente NECESITA EL DAO  -->
+	<bean id="dataAccessBeanCliente" class="frgp.utn.edu.ar.daoImpl.ClienteDaoImpl" 
+		scope="singleton"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
 	<!-- CREO EL SERVICIO PARA USUARIO -->
-	<bean id="serviceBean" class="frgp.utn.edu.ar.servicioImpl.UsuarioServicioImpl">
-		<property name="dataAccess" ref="dataAccessBean"></property>
+	<bean id="serviceBeanUser" class="frgp.utn.edu.ar.servicioImpl.UsuarioServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanUser"></property>
 	</bean>
-	
 
-	<!-- EL SERVICIO NECESITA EL DAO  -->
-	<bean id="dataAccessBean" class="frgp.utn.edu.ar.daoImpl.UsuarioDaoImpl" 
+	<!-- EL SERVICIO Usuario NECESITA EL DAO  -->
+	<bean id="dataAccessBeanUser" class="frgp.utn.edu.ar.daoImpl.UsuarioDaoImpl" 
 		scope="singleton"> 
 		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
 	</bean>
 	
-	<bean id="dataAccessBeanG" class="frgp.utn.edu.ar.daoImpl.UsuarioDaoImpl" 
-		scope="singleton"> 
-		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
-	</bean>
-
 	<!-- Define un dataSource, en este bean se configura los parametros de la db -->
 	<bean id="dataSourceBean"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
