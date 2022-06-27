@@ -34,7 +34,7 @@
 							</select>
 						</div>
 						<div class="col-6">
-							<label><b>Fecha:</b></label> <input type="date" />
+							<label><b>Fecha:</b></label> <input type="date" class="form-control" />
 						</div>
 					</div>
 					<div class="row">

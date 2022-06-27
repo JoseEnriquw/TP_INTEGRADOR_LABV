@@ -38,7 +38,7 @@
 								placeholder="Ingrese el correo electrónico" class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Nacionalidad:</b></label> <br /> <select name="select">
+							<label><b>Nacionalidad:</b></label> <br /> <select name="select" class="form-control">
 								Seleccione
 								<option value="value1">Argentina</option>
 								<option value="value2" selected>Uruguay</option>

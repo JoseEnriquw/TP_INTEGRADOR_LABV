@@ -32,7 +32,7 @@ public class ClienteController {
 	
 	//Inicio
 	
-	@RequestMapping("Clientes.html")
+	@RequestMapping("/Clientes.html")
 	public ModelAndView irClientes(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("listaClientes", service.listadoClientes());

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,6 +21,7 @@
                 <div class="card-body">
                     <div class="botones">
                         <a href="AltaClientes.html"> <button type="button" class="btn btn-secondary"> Agregar Cliente</button> </a>
+                        <a href="Clientes.html" class="btn btn-secondary">Cargar Grilla</a>
                     </div>
                     <table id="tabla" class="table table-dark table-striped table-bordered tabla">
                         <thead>
@@ -28,7 +30,6 @@
                                 <th>DNI</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>Sexo</th>
                                 <th>Nacionalidad</th>
                                 <th>Fecha nacimiento</th>
                                 <th>Direccion</th>
@@ -39,24 +40,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                     
-                        	<c:forEach items="${listaClientes}" var="item">
-				
-				               <tr>	
-				                  <td> ${item.id}</label> </td>
-				                  <td>${item.nombreU}</td>
-				                  <td>${item.passU}</td>
-				                   <td>
-                                    <button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
-                                	<button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
-                                   </td>
-				               </tr>
-				
-			               </c:forEach>
-                           
-
-
-
+                     		<c:forEach items="${listaClientes}" var="item">
+								<tr>
+                                	<td>${item.id}</td>
+                                	<td>${item.dni}</td>
+                                	<td>${item.getNombre()}</td>
+                                	<td>${item.getApellido()}</td>
+                                	<td>${item.getNacionalidad().getDescripcion()}</td>
+                                	<td>${item.getFechaNacimiento()}</td>
+                                	<td>${item.getDireccion()}</td>
+                                	<td>${item.getLocalidad()}</td>
+                                	<td>${item.getEmail()}</td>
+                                	<td>${item.getTelefono()}</td>
+                                	<td>
+                                    	<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
+                                	</td>
+                            	</tr>
+							</c:forEach>                           
                         </tbody>
                     </table>
                 </div>

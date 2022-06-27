@@ -60,7 +60,7 @@
 
 						</div>
 						<div class="col-6">
-							<label><b>Fecha de lanzamiento:</b></label> <input type="date" />
+							<label><b>Fecha de lanzamiento:</b></label> <input type="date" class="form-control" />
 
 
 						</div>
