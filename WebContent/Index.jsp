@@ -11,8 +11,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Document</title>
+    <script>
+
+      function load(){
+    	  var usuario = $('#usuarioLogueado').text();
+    	  console.log(usuario);
+    	  if (usuario == ""){
+    		  window.location = 'http://localhost:9090/TP_INTEGRADOR_GRUPO_9/Login.html';  
+    	  }
+    	  
+      }
+      
+
+</script>
 </head>
-<body>
+<body onload="load()">
+ 
 <%@include file="./WEB-INF/jsp/shared/navBar.jsp"%>
 
             <div class="background">
@@ -24,5 +38,8 @@
       <main>
 
       </main>
+       
+      
 </body>
+
 </html>

@@ -44,6 +44,16 @@ public class UserController {
 		return MV;
 	}
 	
+	@RequestMapping("/Redirect.html")
+	public ModelAndView redirect(String usuarioLogueado, String page){
+		ModelAndView MV = new ModelAndView();
+		MV.addObject("Usuario", usuarioLogueado);
+		MV.setViewName(page); 
+		return MV;
+	}
+	
+	
+	
 	@RequestMapping(value ="validar_usuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView validarUsuario(String nombreU, String passU){
 		
@@ -59,7 +69,8 @@ public class UserController {
 			}
 			else if(user.getNombreU().equals(nombreU)) 
 			{
-				MV.setViewName("Biblioteca"); 
+				MV.addObject("Usuario", nombreU);
+				MV.setViewName("../../Index"); 
 				return MV;
 			}
 			else {

@@ -33,7 +33,7 @@
             <form action="" method="post" class="form form-login"> 
 
                 <div class="form-field">
-                     <input type="submit" value="Salir"> <a href="AltaClientes.html"> </input>  
+                     <a href="Login.html">Salir</a>  
                     <!-- <a href="AltaClientes.html"> <button type="button" class="btn btn-secondary"> Agregar Cliente</button> </a> -->
                    
 

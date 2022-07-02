@@ -18,7 +18,7 @@
     <div class="container-fluid mt-5">
         <div class="card">
             <div class="card-header">
-                <h2> Autores ${Autor.getNombre()}</h2>
+                <h2> Autores</h2>
             </div>
             <div class="card-body">
                 <div class="botones">
@@ -57,7 +57,7 @@
                 </table>
             </div>
         </div>
-        
+        <input type="hidden" id="Mensaje" value="${Mensaje}">
         <div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->
@@ -71,11 +71,6 @@
                     
                     <div class="modal-body">
                         <div class="container-fluid">
-							<div class="row">
-                                <div class="col-12">
-                                	<label><b>${Mensaje}</b></label>
-                                </div>
-                               </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Nombre:</b></label>
@@ -90,7 +85,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Correo electrónico:</b></label>
-                                    <input type="email" placeholder="Ingrese el correo electrónico" name="txtMail" id="Mail" 
+                                    <input type="text" placeholder="Ingrese el correo electrónico" name="txtMail" id="Mail" pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
                                            class="form-control" />
                                 </div>
                                 <div class="col-12">
@@ -154,6 +149,9 @@
 
 
 <script>
+
+	
+
 	function openModalEditar(modal, Jsonitem) {
 	    $('#myModal' + modal).modal('show');
 	    var item = Jsonitem;
@@ -190,6 +188,17 @@
         }
 
     });
+    
+    $(function() {
+    	if ($('#Mensaje').val()){
+    		Swal.fire({
+    			  text: $('#Mensaje').val(),
+    			  confirmButtonText: 'Aceptar',
+    			  confirmButtonColor: '#3085d6'
+    			})
+    	}
+    	
+    })
 
 </script>
 </body>
