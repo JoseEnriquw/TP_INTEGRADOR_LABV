@@ -33,18 +33,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                            <td>Row 2 Data 1</td>
-                            <td>Row 2 Data 2</td>
-                            <td>Row 2 Data 2</td>
-                            <td>
-                                <button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-
+                       <c:forEach items="${listaPrestamos}" var="item">
+								<tr>
+                                	<td>${item.getId()}</td>
+                                	<td>${item.getBiblioteca()}</td>
+                                	<td>${item.getFechaPrestamo()}</td>
+                                	<td>${item.getCantDias()}</td>
+                                	<td>${item.getCliente().getDescripcion()}</td>
+                                	
+                                	<td>
+                                    	<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
+                                	</td>
+                            	</tr>
+							</c:forEach>     
 
 
                     </tbody>

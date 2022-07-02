@@ -17,7 +17,7 @@
 
             <div class="background">
               <div class="container">
-                <h2 >Biblioteca de Alejandria</h2>
+                <h2 >Biblioteca de Alejandria</h2>               
               </div>
            
             </div>

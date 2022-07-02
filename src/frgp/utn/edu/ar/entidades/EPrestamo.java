@@ -37,6 +37,21 @@ public class EPrestamo {
 	public EPrestamo() {
 		
 	}
+	
+	
+
+	public EPrestamo(EBiblioteca biblioteca, Date fechaPrestamo, Integer txtDias, ECliente cliente) {
+		super();
+		this.biblioteca = biblioteca;
+		this.fechaPrestamo = fechaPrestamo;
+		this.cantDias = txtDias;
+		this.cliente = cliente;
+	}
+	
+	/*PARA LAS PRUEBAS*/	
+	
+
+
 
 	public EPrestamo(Integer id) {
 		this.id = id;

@@ -14,8 +14,9 @@
 	<main>
 
 
-	<div class="container-fluid" style="margin-top: 20px">
 
+	<div class="container-fluid" style="margin-top: 20px">
+	<form action="insertPrestamos.html" method="post">
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -24,7 +25,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<label><b>Libro : </b></label> <select class="form-control">
+							<label><b>Libro : </b></label> <select class="form-control" name="selectLibro">
 								<option>Seleccione una opcion</option>
 								<option>El senior de los anillos</option>
 								<option>El Hobbit</option>
@@ -34,17 +35,17 @@
 							</select>
 						</div>
 						<div class="col-6">
-							<label><b>Fecha:</b></label> <input type="date" class="form-control" />
+							<label><b>Fecha:</b></label> <input type="date" name= "txtFecha" class="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Cantidad de dias: </b></label> <input type="number"
-								min="1" class="form-control" />
+							<label><b>Cantidad de dias: </b></label> <input type="number" name="txtDias" min="1" class="form-control" />
+							<div class="invalid-feedback">Nombre requerido</div>
 						</div>
 						<div class="col-6">
-							<label><b>Cliente:</b></label> <input type="text"
-								placeholder="Ingrese el DNI" class="form-control" />
+							<label><b>Cliente:</b></label> <input type="text" name="txtDNI"	placeholder="Ingrese el DNI" class="form-control" />
+							<div class="invalid-feedback">Nombre requerido</div>
 						</div>
 					</div>
 
@@ -53,8 +54,10 @@
 						<input type="button" class="btn btn-danger form" value="Cancelar" />
 					</div>
 				</div>
+				 <h3>${Mensaje}</h3>
 			</div>
 		</div>
+			</form>
 	</div>
 
 
