@@ -1,8 +1,10 @@
 var modalWrap=null;
-const showModal=(title,description)=>{
+const showModal=(title,componentes)=>{
      if(modalWrap!==null){
     	modalWrap.remove(); 
      }
+     
+     var aux=`<button type="button" class="btn btn-primary">Save changes</button>`;
 	modalWrap= document.createElement('div');
 	modalWrap.innerHTML= `
 		<div class="modal fade" tabindex="-1">
@@ -13,7 +15,12 @@ const showModal=(title,description)=>{
 		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
-		<p>${description}</p>
+		
+		`
+		+
+		componentes
+		+
+		`
 		</div>
 		<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                       <a href="DeleteCliente.html"> <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button></a>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
                     </div>
@@ -178,7 +178,7 @@
 
 
     <script>
-    function openModal(modal) {
+    function openModal(modal,id) {
         $('#myModal' + modal).modal('show');
     }
         $('#tabla').DataTable({

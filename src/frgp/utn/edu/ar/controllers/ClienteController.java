@@ -3,6 +3,7 @@ package frgp.utn.edu.ar.controllers;
 import java.util.Date;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -36,6 +37,20 @@ public class ClienteController {
 	public ModelAndView irClientes(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("listaClientes", service.listadoClientes());
+		ECliente cliente=service.obtenerCliente(1);
+		MV.addObject("cliente", cliente);
+		MV.setViewName("Clientes"); 
+		return MV;
+	}
+
+	
+	@RequestMapping("/ClienteEditar.html")
+	public ModelAndView editarClientes(HttpServletRequest request){
+		ModelAndView MV = new ModelAndView();
+		MV.addObject("listaClientes", service.listadoClientes());
+		Integer aux=Integer.parseInt(request.getParameter("id"));
+		ECliente cliente=service.obtenerCliente(aux);
+		MV.addObject("cliente", cliente);
 		MV.setViewName("Clientes"); 
 		return MV;
 	}
