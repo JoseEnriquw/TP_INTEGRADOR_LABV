@@ -20,6 +20,17 @@
 	<!-- Para que lea los metodos anotados con @Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<!-- CREO EL SERVICIO PARA Autor -->
+	<bean id="serviceBeanAutor" class="frgp.utn.edu.ar.servicioImpl.AutorServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanAutor"></property>
+	</bean>
+	
+	<!-- EL SERVICIO Autor NECESITA EL DAO  -->
+	<bean id="dataAccessBeanAutor" class="frgp.utn.edu.ar.daoImpl.AutorDaoImpl" 
+		scope="singleton"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
 	<!-- CREO EL SERVICIO PARA Cliente -->
 	<bean id="serviceBeanCliente" class="frgp.utn.edu.ar.servicioImpl.ClienteServicioImpl">
 		<property name="dataAccess" ref="dataAccessBeanCliente"></property>

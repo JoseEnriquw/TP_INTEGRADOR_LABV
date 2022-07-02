@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
      <meta charset="UTF-8">
@@ -17,7 +18,7 @@
     <div class="container-fluid mt-5">
         <div class="card">
             <div class="card-header">
-                <h2> Autores</h2>
+                <h2> Autores ${Autor.getNombre()}</h2>
             </div>
             <div class="card-body">
                 <div class="botones">
@@ -36,57 +37,70 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2302</td>
-                            <td>Juan</td>
-                            <td>Gomez</td>
-                            <td>Venezuela</td>
-                            <td>j_gomez@gmail.com</td>
-                            <td>
-                                <button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
+                        <c:forEach items="${listaAutores}" var="item">
+								<tr>
+									
+                                	<td>${item.id}</td>
+                                	<td>${item.getNombre()}</td>
+                                	<td>${item.getApellido()}</td>
+                                	<td>${item.getNacionalidad().getDescripcion()}</td>
+                                	<td>${item.getEmail()}</td>
+                                	<td>
+                                    	<button class="btn btn-success" type="button" onclick='openModalEditar("Editar",${item.ConvertToJson()});'><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id});"><i class="fas fa-times"></i></button>
+                                	</td>
+                                	
+                            	</tr>
+						</c:forEach>
+						 
                     </tbody>
                 </table>
             </div>
         </div>
+        
         <div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->
                 <div class="modal-content">
+                	<form action="modificarAutores.html" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Editar Autor</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                     </div>
+                    
                     <div class="modal-body">
                         <div class="container-fluid">
-
+							<div class="row">
+                                <div class="col-12">
+                                	<label><b>${Mensaje}</b></label>
+                                </div>
+                               </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Nombre:</b></label>
-                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" />
+                                    <input type="hidden" name="ID" id="id" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Apellido:</b></label>
-                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido"  />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Correo electrónico:</b></label>
-                                    <input type="email" placeholder="Ingrese el correo electrónico"
+                                    <input type="email" placeholder="Ingrese el correo electrónico" name="txtMail" id="Mail" 
                                            class="form-control" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Nacionalidad:</b></label>
                                     <br />
-                                    <select name="select" class="form-control">
+                                    <select name="selectNacionalidad" class="form-control">
                                         Seleccione
-                                        <option value="value1">Argentina</option>
-                                        <option value="value2" selected>Uruguay</option>
-                                        <option value="value3">Brasil</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Uruguay" selected>Uruguay</option>
+                                        <option value="Brasil">Brasil</option>
                                     </select>
 
                                 </div>
@@ -97,10 +111,11 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
                     </div>
+                   </form>
                 </div>
 
             </div>
@@ -122,11 +137,13 @@
 
                         </div>
                     </div>
+                    <form action="bajaAutores.html" method="post">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                    	<input type="hidden" id="id" name="ID" />
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-
                     </div>
+                    </form>
                 </div>
 
             </div>
@@ -137,9 +154,20 @@
 
 
 <script>
-	function openModal(modal) {
+	function openModalEditar(modal, Jsonitem) {
 	    $('#myModal' + modal).modal('show');
+	    var item = Jsonitem;
+	    $('#myModal' + modal + ' #id').val(item.id);
+	    $('#myModal' + modal + ' #Nombre').val(item.nombre);
+	    $('#myModal' + modal + ' #Apellido').val(item.apellido);
+	    $('#myModal' + modal + ' #Mail').val(item.email);
 	}
+	
+	function openModal(modal, id) {
+	    $('#myModal' + modal).modal('show');
+	    $('#myModal' + modal + ' #id').val(id);
+	}
+	
     $('#tabla').DataTable({
 
         "language": {
