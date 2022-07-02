@@ -1,4 +1,6 @@
 package frgp.utn.edu.ar.entidades;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,6 +37,24 @@ public class EAutor {
 		
 	}
 	
+	public EAutor(String nombre, String apellido, ENacionalidad nacionalidad, String email) {
+		
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nacionalidad = nacionalidad;
+		this.email = email;
+	}
+	
+	public EAutor(Integer id,String nombre, String apellido, ENacionalidad nacionalidad, String email) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nacionalidad = nacionalidad;
+		this.email = email;
+	}
+
+
+
 	public EAutor(Integer id) {
 		this.id = id;
 	}
@@ -83,6 +103,10 @@ public class EAutor {
 	public String toString() {
 		return "EAutor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nacionalidad=" + nacionalidad
 				+ ", email=" + email + "]";
+	}
+	
+	public String ConvertToJson() {
+		return new Gson().toJson(this);
 	}
 
 	
