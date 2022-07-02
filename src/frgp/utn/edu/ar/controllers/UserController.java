@@ -99,24 +99,10 @@ public class UserController {
 		return MV;
 	}
 	
-	@RequestMapping("/Autores.html")
-	public ModelAndView irAutores(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Autores"); 
-		return MV;
-	}
-	
 	@RequestMapping("/LogOut.html")
 	public ModelAndView irLogOut(){
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("LogOut"); 
-		return MV;
-	}
-	
-	@RequestMapping("/AltaAutores.html")
-	public ModelAndView irAltaAutores(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("AltaAutores"); 
 		return MV;
 	}
 	
