@@ -53,8 +53,8 @@
                                 	<td>${item.getEmail()}</td>
                                 	<td>${item.getTelefono()}</td>
                                 	<td>
-                                    	<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
-                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
+                                    	<button class="btn btn-success" type="button" onclick='openModalEditar("Editar",${item.ConvertToJson()});'><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id});"><i class="fas fa-times"></i></button>
                                 	</td>
                             	</tr>
 							</c:forEach>                           
@@ -66,6 +66,7 @@
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->
                 <div class="modal-content">
+                <form action="modificarCliente.html" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Editar Cliente</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -73,48 +74,48 @@
                     </div>
                     <div class="modal-body">
                         <div class="container-fluid" style="margin-top:20px">
-
+                          <input type="hidden" name="ID" id="id" />
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Nombre:</b></label>
-                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Apellido:</b></label>
-                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Correo electrónico:</b></label>
-                                    <input type="email" placeholder="Ingrese el correo electrónico"
+                                    <input type="email" placeholder="Ingrese el correo electrónico" name="txtMail" id="Mail"
                                            class="form-control" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Teléfono:</b></label>
-                                    <input type="tel" placeholder="Ingrese el teléfono" class="form-control" />
+                                    <input type="tel" placeholder="Ingrese el teléfono" class="form-control" name="txtTelefono" id="Telefono"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Dirección:</b></label>
-                                    <input type="text" placeholder="Ingrese la direccion" class="form-control" />
+                                    <input type="text" placeholder="Ingrese la direccion" class="form-control" name="txtDireccion" id="Direccion"/>
                                 </div>
                                 <div class="col-12">
                                     <label><b>Localidad:</b></label>
-                                    <input type="text" placeholder="Ingrese la localidad" class="form-control" />
+                                    <input type="text" placeholder="Ingrese la localidad" class="form-control" name="txtLocalidad" id="Localidad"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>DNI:</b></label>
                                     <br />
-                                    <input type="tel" placeholder="Ingrese el DNI" class="form-control" />
+                                    <input type="tel" placeholder="Ingrese el DNI" class="form-control" name="txtDni" id="Dni"/>
 
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de nacimiento:</b></label>
-                                    <input type="date" class="form-control" />
+                                    <input type="date" class="form-control" name="txtFecha" id="Fecha"/>
 
 
                                 </div>
@@ -123,12 +124,12 @@
                                 <div class="col-12">
                                     <label><b>Nacionalidad:</b></label>
                                     <br />
-                                    <select name="select" class="form-control">
-                                        Seleccione
-                                        <option value="value1">Argentina</option>
-                                        <option value="value2" selected>Uruguay</option>
-                                        <option value="value3">Brasil</option>
-                                    </select>
+                                <select name="selectNacionalidad" class="form-control">
+                                     Seleccione
+									<option value="Argentina">Argentina</option>
+									<option value="Uruguay" selected>Uruguay</option>
+									<option value="Brasil">Brasil</option>
+								</select>
 
                                 </div>
 
@@ -138,10 +139,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
                     </div>
+                    
+                  </form>
+                  
                 </div>
 
             </div>
@@ -163,11 +167,14 @@
 
                         </div>
                     </div>
-                    <div class="modal-footer">
-                       <a href="DeleteCliente.html"> <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button></a>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-
-                    </div>
+                    <form action="bajaCliente.html" method="post">
+	                    <div class="modal-footer">
+	                       <input type="hidden" id="id" name="ID" />
+	                       <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+	                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+	
+	                    </div>
+                    </form>
                 </div>
 
             </div>
@@ -178,9 +185,24 @@
 
 
     <script>
-    function openModal(modal,id) {
-        $('#myModal' + modal).modal('show');
-    }
+	function openModalEditar(modal, Jsonitem) {
+	    $('#myModal' + modal).modal('show');
+	    var item = Jsonitem;
+	    $('#myModal' + modal + ' #id').val(item.id);
+	    $('#myModal' + modal + ' #Nombre').val(item.nombre);
+	    $('#myModal' + modal + ' #Apellido').val(item.apellido);
+	    $('#myModal' + modal + ' #Mail').val(item.email);
+	    $('#myModal' + modal + ' #Telefono').val(item.telefono);
+	    $('#myModal' + modal + ' #Direccion').val(item.direccion);
+	    $('#myModal' + modal + ' #Localidad').val(item.localidad);
+	    $('#myModal' + modal + ' #Dni').val(item.dni);
+	    //$('#myModal' + modal + ' #Fecha').val(item.fechaNacimiento);
+	}
+	
+	function openModal(modal, id) {
+	    $('#myModal' + modal).modal('show');
+	    $('#myModal' + modal + ' #id').val(id);
+	}
         $('#tabla').DataTable({
 
             "language": {

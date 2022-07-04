@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.google.gson.Gson;
+
 @Entity
 @Table(name="cliente")
 public class ECliente {
@@ -49,6 +51,20 @@ public class ECliente {
 		
 	}
 	
+	public ECliente(Integer id, String dni, String nombre, String apellido, ENacionalidad nacionalidad, String email,
+			String direccion, String localidad, String telefono, Date fechaNacimiento) {
+		this.id = id;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nacionalidad = nacionalidad;
+		this.email = email;
+		this.direccion = direccion;
+		this.localidad = localidad;
+		this.telefono = telefono;
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	public ECliente(String dni, String nombre, String apellido, ENacionalidad nacionalidad, String email,
 			String direccion, String localidad, String telefono, Date fechaNacimiento) {
 		this.dni = dni;
@@ -153,4 +169,7 @@ public class ECliente {
 				+ localidad + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
+	public String ConvertToJson() {
+		return new Gson().toJson(this);
+	}
 }

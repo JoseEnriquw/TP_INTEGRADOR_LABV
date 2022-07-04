@@ -1,5 +1,6 @@
 package frgp.utn.edu.ar.controllers;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.servlet.ServletConfig;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import frgp.utn.edu.ar.entidades.EAutor;
 import frgp.utn.edu.ar.entidades.ECliente;
 import frgp.utn.edu.ar.entidades.ENacionalidad;
 import frgp.utn.edu.ar.servicio.IClienteServicio;
@@ -37,20 +39,53 @@ public class ClienteController {
 	public ModelAndView irClientes(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("listaClientes", service.listadoClientes());
-		ECliente cliente=service.obtenerCliente(1);
-		MV.addObject("cliente", cliente);
 		MV.setViewName("Clientes"); 
 		return MV;
 	}
 
-	
-	@RequestMapping("/ClienteEditar.html")
-	public ModelAndView editarClientes(HttpServletRequest request){
+	@RequestMapping("/bajaCliente.html")
+    public ModelAndView deleteAutores(Integer ID){
+		
 		ModelAndView MV = new ModelAndView();
+		String Message="";
+			
+			try{
+				service.bajaCliente(ID);
+				
+	            Message="�Cliente eliminado con �xito!";
+			
+			}
+			catch(Exception e)
+			{
+				Message="No se pudo eliminar el autor";
+				e.printStackTrace();
+			}
+			
+			MV.addObject("Mensaje", Message);
+			MV.addObject("listaClientes", service.listadoClientes());
+			MV.setViewName("Clientes"); 
+			return MV;
+	}
+	
+	@RequestMapping("/modificarCliente.html")
+	public ModelAndView editarClientes(String txtNombre,String txtApellido,String txtMail,String txtTelefono,String txtDireccion,String txtLocalidad,
+			String txtDni,String txtFecha, String selectNacionalidad,Integer ID){
+		ModelAndView MV = new ModelAndView();
+		String Message="";
+	
+		try {
+			service.modificarCliente(new ECliente(ID,txtDni,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail,
+						txtDireccion,txtLocalidad,txtTelefono, Util.convertStringToDate(txtFecha)
+						));
+			
+		Message="�Cliente modificado con �xito!";
+		} catch (ParseException e) {
+			Message="No se pudo modificar el Cliente";	
+			e.printStackTrace();
+		}
+		
+		MV.addObject("Mensaje", Message);
 		MV.addObject("listaClientes", service.listadoClientes());
-		Integer aux=Integer.parseInt(request.getParameter("id"));
-		ECliente cliente=service.obtenerCliente(aux);
-		MV.addObject("cliente", cliente);
 		MV.setViewName("Clientes"); 
 		return MV;
 	}

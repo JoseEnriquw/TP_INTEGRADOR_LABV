@@ -31,5 +31,15 @@ public class ClienteServicioImpl implements IClienteServicio {
 		return dataAccess.get(id);
 	}
 
+	@Override
+	public void bajaCliente(Integer id) {
+		dataAccess.delete(new ECliente(id));
+	}
+
+	@Override
+	public void modificarCliente(ECliente cliente) {
+		dataAccess.update(cliente);
+	}
+
 
 }
