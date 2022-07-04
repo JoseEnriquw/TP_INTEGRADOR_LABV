@@ -19,12 +19,26 @@ public class ClienteServicioImpl implements IClienteServicio {
 	@Override
 	public void altaCliente(ECliente cliente) {
 	dataAccess.insert(cliente);
-		
 	}
 
 	@Override
 	public ArrayList<ECliente> listadoClientes() {
 	return dataAccess.getAll();	
+	}
+
+	@Override
+	public ECliente obtenerCliente(Integer id) {
+		return dataAccess.get(id);
+	}
+
+	@Override
+	public void bajaCliente(Integer id) {
+		dataAccess.delete(new ECliente(id));
+	}
+
+	@Override
+	public void modificarCliente(ECliente cliente) {
+		dataAccess.update(cliente);
 	}
 
 
