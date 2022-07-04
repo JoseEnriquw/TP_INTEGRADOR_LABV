@@ -92,12 +92,7 @@ public class UserController {
 		return MV;
 	}
 	
-	@RequestMapping("/Prestamos.html")
-	public ModelAndView irPrestamos(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Prestamos"); 
-		return MV;
-	}
+
 	
 	@RequestMapping("/LogOut.html")
 	public ModelAndView irLogOut(){

@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -36,16 +37,33 @@ public class EBiblioteca implements Serializable{
 	@Check(constraints = "estado =1 OR estado=2")
 	private Integer estado;
 	
-	@OneToMany()
-	@JoinColumn(name="id_biblioteca")
-	private List<ELibro> listaLibros = new ArrayList<ELibro>();
+	@ManyToOne(cascade= {CascadeType. ALL})
+	@JoinColumn(name="id_libro")
+	private ELibro libro ;
 	
-	public List<ELibro> getListaLibros() {
-		return listaLibros;
+	
+
+	public EBiblioteca(int id, Date fechaAlta, Integer estado, ELibro libro) {
+		
+		this.id = id;
+		this.fechaAlta = fechaAlta;
+		this.estado = estado;
+		libro = libro;
 	}
 
-	public void setListaLibros(List<ELibro> listaLibros) {
-		this.listaLibros = listaLibros;
+	public EBiblioteca(Date fechaAlta, Integer estado, ELibro libro) {
+		
+		this.fechaAlta = fechaAlta;
+		this.estado = estado;
+		libro = libro;
+	}
+
+	public ELibro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(ELibro libro) {
+		libro = libro;
 	}
 
 	public EBiblioteca() {

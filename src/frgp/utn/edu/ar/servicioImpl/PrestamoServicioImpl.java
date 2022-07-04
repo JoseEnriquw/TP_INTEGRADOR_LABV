@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import frgp.utn.edu.ar.dao.IPrestamoDao;
 
 import frgp.utn.edu.ar.entidades.EPrestamo;
 import frgp.utn.edu.ar.servicio.IPrestamoServicio;
 
-public class IPrestamoServicioImpl implements IPrestamoServicio {
+
+public class PrestamoServicioImpl implements IPrestamoServicio {
 	
 	private IPrestamoDao dataAccess = null;
 	@Autowired

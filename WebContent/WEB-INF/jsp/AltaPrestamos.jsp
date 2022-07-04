@@ -26,11 +26,11 @@
 					<div class="row">
 						<div class="col-6">
 							<label><b>Libro : </b></label> <select class="form-control" name="selectLibro">
-								<option>Seleccione una opcion</option>
-								<option>El senior de los anillos</option>
-								<option>El Hobbit</option>
-								<option>El Silmarillion</option>
-								<option>Cuentos inconclusos de numenor y la tierra
+								<option value="">Seleccione una opcion</option>
+								<option value="El senior de los anillos">El senior de los anillos</option>
+								<option value="El Hobbit">El Hobbit</option>
+								<option value="El Silmarillion">El Silmarillion</option>
+								<option value="Cuentos inconclusos">Cuentos inconclusos de numenor y la tierra
 									media</option>
 							</select>
 						</div>
@@ -50,8 +50,8 @@
 					</div>
 
 					<div class="btn-group mt-3 px-2">
-						<input type="button" class="btn btn-success form" value="Aceptar" />
-						<input type="button" class="btn btn-danger form" value="Cancelar" />
+						<input type="submit" class="btn btn-success form" value="Aceptar" />
+						<a class="btn btn-danger form" href="Prestamos.html" >Cancelar</a>
 					</div>
 				</div>
 				 <h3>${Mensaje}</h3>

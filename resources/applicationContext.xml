@@ -53,6 +53,17 @@
 		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
 	</bean>
 	
+	<!-- CREO EL SERVICIO PARA PRESTAMO -->
+	<bean id="serviceBeanPrestamo" class="frgp.utn.edu.ar.servicioImpl.PrestamoServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanPrestamo"></property>
+	</bean>
+	
+	<!-- EL SERVICIO PRESTAMO NECESITA EL DAO  -->
+	<bean id="dataAccessBeanPrestamo" class="frgp.utn.edu.ar.daoImpl.PrestamoDaoImpl" 
+		scope="singleton"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
 	<!-- Define un dataSource, en este bean se configura los parametros de la db -->
 	<bean id="dataSourceBean"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

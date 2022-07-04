@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
  <meta charset="UTF-8">
@@ -36,10 +37,10 @@
                        <c:forEach items="${listaPrestamos}" var="item">
 								<tr>
                                 	<td>${item.getId()}</td>
-                                	<td>${item.getBiblioteca()}</td>
+                                	<td>${item.getBiblioteca().getLibro().getTitulo()}</td>
                                 	<td>${item.getFechaPrestamo()}</td>
                                 	<td>${item.getCantDias()}</td>
-                                	<td>${item.getCliente().getDescripcion()}</td>
+                                	<td>${item.getCliente().getNombre()}</td>
                                 	
                                 	<td>
                                     	<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
