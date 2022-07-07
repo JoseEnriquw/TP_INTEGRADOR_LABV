@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.google.gson.Gson;
 
 @Entity
 @Table(name="libro")
@@ -42,7 +45,7 @@ public class ELibro implements Serializable{
 
 	private String descripcion;
 	
-	@ManyToMany (cascade= {CascadeType. ALL})
+	@ManyToMany (cascade= {CascadeType. ALL},fetch=FetchType.EAGER)
 	@JoinTable(name="generos_x_libro", joinColumns = {@JoinColumn(name = "isbn")}, inverseJoinColumns = {@JoinColumn(name="id_genero")})
 	private List<EGenero> generos;
 
@@ -139,6 +142,19 @@ public class ELibro implements Serializable{
 		return "ELibro [isbn=" + isbn + ", titulo=" + titulo + ", fechaLanzamiento=" + fechaLanzamiento + ", idioma="
 				+ idioma + ", cantPaginas=" + cantPaginas + ", autor=" + autor 
 				+ ", descripcion=" + descripcion + ", generos=" +sGeneros+ "]";
+	}
+	
+	public String getGenerosString() {
+		String generos = "";
+		for (EGenero genero : this.getGeneros()) {
+			generos = generos + genero.getDescripcion() + ", ";
+		}
+		
+		return generos.substring(generos.length()-2,generos.length());
+	}
+	
+	public String ConvertToJson() {
+		return new Gson().toJson(this);
 	}
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,23 +39,24 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Row 1 Data 1</td>
-							<td>Row 1 Data 2</td>
-							<td>Row 2 Data 1</td>
-							<td>Row 2 Data 2</td>
-							<td>Row 2 Data 2</td>
-							<td>Row 2 Data 2</td>
-							<td>Row 2 Data 2</td>
-							<td>Row 2 Data 2</td>
-							<td>
-								<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
-							</td>
-						</tr>
-
-
-
+						<c:forEach items="${listaLibros}" var="item">
+								<tr>
+									
+                                	<td>${item.getId()}</td>
+                                	<td>${item.getTitulo()}</td>
+                                	<td>${item.getFechaLanzamiento()}</td>
+                                	<td>${item.getIdioma()}</td>
+                                	<td>${item.getCantPaginas()}</td>
+                                	<td>${item.getAutor().getNombre()} ${item.getAutor().getApellido()}</td>
+                                	<td>${item.getDescripcion()}</td>
+                                	<td>${item.getGenerosString()}</td>
+                                	<td>
+                                    	<button class="btn btn-success" type="button" onclick='openModalEditar("Editar",${item.ConvertToJson()});'><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id});"><i class="fas fa-times"></i></button>
+                                	</td>
+                                	
+                            	</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
