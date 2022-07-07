@@ -53,8 +53,6 @@ public class EAutor {
 		this.email = email;
 	}
 
-
-
 	public EAutor(Integer id) {
 		this.id = id;
 	}

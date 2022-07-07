@@ -46,7 +46,21 @@ public class ELibro implements Serializable{
 	@JoinTable(name="generos_x_libro", joinColumns = {@JoinColumn(name = "isbn")}, inverseJoinColumns = {@JoinColumn(name="id_genero")})
 	private List<EGenero> generos;
 
-	
+	public ELibro() {
+		
+	}
+
+	public ELibro(String titulo, Date fechaLanzamiento, String idioma, Integer cantPaginas, EAutor autor,
+			String descripcion, List<EGenero> generos) {
+		super();
+		this.titulo = titulo;
+		this.fechaLanzamiento = fechaLanzamiento;
+		this.idioma = idioma;
+		this.cantPaginas = cantPaginas;
+		this.autor = autor;
+		this.descripcion = descripcion;
+		this.generos = generos;
+	}
 
 	public int getId() {
 		return isbn;
@@ -127,10 +141,7 @@ public class ELibro implements Serializable{
 				+ ", descripcion=" + descripcion + ", generos=" +sGeneros+ "]";
 	}
 
-	public ELibro() {
-		
-	}
-	
+
 	
 
 }

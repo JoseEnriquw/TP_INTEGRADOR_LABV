@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -15,7 +16,7 @@
 
 
 	<div class="container-fluid" style="margin-top: 20px">
-
+		<form action="insertLibro.html" method="post">
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -24,54 +25,57 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<label><b>Título:</b></label> <input type="text"
+							<label><b>Título:</b></label> <input type="text" name="txtTitulo"
 								placeholder="Ingrese el título" class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Idioma:</b></label> <input type="text"
+							<label><b>Idioma:</b></label> <input type="text" name="txtIdioma"
 								placeholder="Ingrese el idioma" class="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Cantidad de páginas:</b></label> <input type="number"
+							<label><b>Cantidad de páginas:</b></label> <input type="number" name="txtCant"
 								placeholder="Ingrese la cantidad de páginas"
 								class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Autor:</b></label> <input type="text"
+							<label><b>Autor:</b></label> <input type="text" name="txtAutor"
 								placeholder="Ingrese el autor" class="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Descripción:</b></label> <input type="text"
+							<label><b>Descripción:</b></label> <input type="text" name="txtDesc"
 								placeholder="Ingrese la descripción" class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Géneros:</b></label> <input type="text"
-								placeholder="Ingrese los géneros" class="form-control" />
+							<c:forEach items="${Generos}" var="item">
+								 <input type="checkbox" name="chkGenero" value="${item.getID()}">
+                                 <label for="chkGenero">${item.getDescripcion()}</label><br>
+							</c:forEach> 
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>ISBN: </b></label> <input type="text"
+							<label><b>ISBN: </b></label> <input type="text" name="txtIsbn"
 								placeholder="Ingrese ISBN" class="form-control" />
 
 						</div>
 						<div class="col-6">
-							<label><b>Fecha de lanzamiento:</b></label> <input type="date" class="form-control" />
+							<label><b>Fecha de lanzamiento:</b></label> <input type="date" name="txtFecha" class="form-control" />
 
 
 						</div>
 					</div>
 					<div class="btn-group mt-3 px-2">
-						<input type="button" class="btn btn-success form" value="Aceptar" />
-						<input type="button" class="btn btn-danger form" value="Cancelar" />
+						<input type="submit" class="btn btn-success form" value="Aceptar" />
+							<a class="btn btn-danger form" href="Todosloslibros.html" >Cancelar</a>
 					</div>
 				</div>
 			</div>
 		</div>
+			</form>
 	</div>
 
 
