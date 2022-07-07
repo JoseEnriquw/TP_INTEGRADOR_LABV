@@ -37,7 +37,7 @@ public class GenericDaoImpl<Entity, K extends Serializable> implements IGenericD
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	public Entity get(K pk) {
-		return (Entity) this.hibernateTemplate.load(domainClass, pk);
+		return (Entity) this.hibernateTemplate.get(domainClass, pk);
 	}
 	
 	@Override

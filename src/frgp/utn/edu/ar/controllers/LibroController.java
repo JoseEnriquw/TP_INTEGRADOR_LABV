@@ -1,6 +1,7 @@
 package frgp.utn.edu.ar.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 
@@ -10,11 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
-
-import frgp.utn.edu.ar.entidades.EAutor;
+import frgp.utn.edu.ar.entidades.EGenero;
 import frgp.utn.edu.ar.entidades.ELibro;
-import frgp.utn.edu.ar.entidades.ENacionalidad;
-import frgp.utn.edu.ar.servicio.IAutorServicio;
 import frgp.utn.edu.ar.servicio.ILibroServicio;
 import frgp.utn.edu.ar.utiles.Util;
 
@@ -35,6 +33,7 @@ public class LibroController {
 	public ModelAndView irLibros(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("listaLibros", service.listadoLibros());
+		MV.addObject("Autores", service.listadoAutores());
 		MV.setViewName("Todosloslibros"); 
 		return MV;
 	}
@@ -45,6 +44,7 @@ public class LibroController {
 		Object aux=service.listadoGenero();
 		System.out.print(aux);
 		MV.addObject("Generos", service.listadoGenero());
+		MV.addObject("Autores", service.listadoAutores());
 		MV.addObject("Mensaje", null);
 		MV.setViewName("AltaLibros"); 
 		return MV;
@@ -72,19 +72,24 @@ public class LibroController {
 			
 			MV.addObject("Mensaje", Message);
 			MV.addObject("listaLibros", service.listadoLibros());
+			MV.addObject("Generos", service.listadoGenero());
+			MV.addObject("Autores", service.listadoAutores());
 			MV.setViewName("Libros"); 
 			return MV;
 	}
 	
 	@RequestMapping("/insertLibro.html")
-	public ModelAndView insertLibros(String txtTitulo,String txtFecha,String txtIdioma,Integer txtCant,Integer txtAutor,String txtDesc){
+	public ModelAndView insertLibros(String txtTitulo,String txtFecha,String txtIdioma,Integer txtCant,Integer selectAutores,String txtDesc, Integer[] chkGenero){
 		ModelAndView MV = new ModelAndView();
 	String Message="";
 		
 		try{
 		
-			//System.out.print(chkGenero);
-			//service.altaLibro(new ELibro(txtTitulo, Util.convertStringToDate(txtFecha) ,txtIdioma,txtCant,new EAutor(txtAutor),txtDesc,txtGenero));
+			ArrayList<EGenero> listaGeneros = new ArrayList<EGenero>();
+			for (Integer idGenero : chkGenero ) {
+				listaGeneros.add(service.getGenero(idGenero));
+			}
+			service.altaLibro(new ELibro(txtTitulo, Util.convertStringToDate(txtFecha) ,txtIdioma,txtCant,service.getAutor(selectAutores),txtDesc,listaGeneros));
 			
             Message="Libro Ingresado con Exito!!";
 		
@@ -96,7 +101,9 @@ public class LibroController {
 		}
 		
 		MV.addObject("Mensaje", Message);
-		MV.setViewName("AltaLibro"); 
+		MV.addObject("Generos", service.listadoGenero());
+		MV.addObject("Autores", service.listadoAutores());
+		MV.setViewName("AltaLibros"); 
 		return MV;
 	}
 	
@@ -120,6 +127,8 @@ public class LibroController {
 		
 		MV.addObject("Mensaje", Message);
 		MV.addObject("listaLibros", service.listadoLibros());
+		MV.addObject("Generos", service.listadoGenero());
+		MV.addObject("Autores", service.listadoAutores());
 		MV.setViewName("Libros"); 
 		return MV;
 	}

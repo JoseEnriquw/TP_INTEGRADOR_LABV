@@ -40,8 +40,25 @@
 								class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Autor:</b></label> <input type="text" name="txtAutor"
-								placeholder="Ingrese el autor" class="form-control" />
+							<label><b>Autor:</b></label> 
+							<select name="selectAutores" class="form-control">
+								<c:forEach items="${Autores}" var="item">
+                                	<option value="${item.getId() }">${item.getNombre() } ${item.getApellido() }</option>
+                                </c:forEach>
+							</select>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-6">
+							<label><b>ISBN: </b></label> <input type="text" name="txtIsbn"
+								placeholder="Ingrese ISBN" class="form-control" />
+
+						</div>
+						<div class="col-6">
+							<label><b>Fecha de lanzamiento:</b></label> <input type="date" name="txtFecha" class="form-control" />
+
+
 						</div>
 					</div>
 					<div class="row">
@@ -54,18 +71,6 @@
 								 <input type="checkbox" name="chkGenero" value="${item.getID()}">
                                  <label for="chkGenero">${item.getDescripcion()}</label><br>
 							</c:forEach> 
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<label><b>ISBN: </b></label> <input type="text" name="txtIsbn"
-								placeholder="Ingrese ISBN" class="form-control" />
-
-						</div>
-						<div class="col-6">
-							<label><b>Fecha de lanzamiento:</b></label> <input type="date" name="txtFecha" class="form-control" />
-
-
 						</div>
 					</div>
 					<div class="btn-group mt-3 px-2">

@@ -3,6 +3,7 @@ package frgp.utn.edu.ar.servicio;
 import java.util.ArrayList;
 
 import frgp.utn.edu.ar.entidades.EAutor;
+import frgp.utn.edu.ar.entidades.ENacionalidad;
 
 public interface IAutorServicio {
 
@@ -15,5 +16,9 @@ public interface IAutorServicio {
 	public EAutor obtenerAutor(Integer id);
 	
 	public void modificarAutor(EAutor autor);
+	
+	public ArrayList<ENacionalidad> listadoNacionalidades();
+	
+	public ENacionalidad getNacionalidad(Integer id) ;
 	
 }
