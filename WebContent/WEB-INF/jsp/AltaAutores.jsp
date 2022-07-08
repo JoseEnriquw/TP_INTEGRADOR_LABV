@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,11 +39,11 @@
 								placeholder="Ingrese el correo electrónico" class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Nacionalidad:</b></label> <br /> <select name="selectNacionalidad" class="form-control">
-								Seleccione
-								<option value="Argentina">Argentina</option>
-								<option value="Uruguay" selected>Uruguay</option>
-								<option value="Brasil">Brasil</option>
+							<label><b>Nacionalidad:</b></label> <br /> 
+							<select name="selectNacionalidad" class="form-control">
+								<c:forEach items="${Nacionalidades}" var="item">
+                                	<option value="${item.getID() }">${item.getDescripcion() }</option>
+                                </c:forEach>
 							</select>
 						</div>
 					</div>
