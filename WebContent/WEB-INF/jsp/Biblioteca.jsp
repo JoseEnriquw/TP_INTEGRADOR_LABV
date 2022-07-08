@@ -19,6 +19,9 @@
                     <h2>Biblioteca</h2>
                 </div>
                 <div class="card-body">
+                <div class="botones">
+					<a href="AltaBiblioteca.html"> <button type="button" class="btn btn-secondary">Agregar libro a la biblioteca</button></a>
+				</div>
                     <div class="col-3">
                         <label><b>Filtrar por estado : </b></label>
                         <select class="form-control">

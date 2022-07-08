@@ -67,6 +67,18 @@
 		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
 	</bean>
 	
+			<!-- EL SERVICIO Biblioteca NECESITA EL DAO  -->
+	<bean id="dataAccessBeanBiblioteca" class="frgp.utn.edu.ar.daoImpl.BibliotecaDaoImpl" 
+		scope="prototype"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
+	<!-- CREO EL SERVICIO PARA Biblioteca -->
+	<bean id="serviceBeanBiblioteca" class="frgp.utn.edu.ar.servicioImpl.BibliotecaServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanBiblioteca"></property>
+		<property name="dataAccessLibro" ref="dataAccessBeanLibro"></property>
+	</bean>
+	
 	<!-- CREO EL SERVICIO PARA USUARIO -->
 	<bean id="serviceBeanUser" class="frgp.utn.edu.ar.servicioImpl.UsuarioServicioImpl">
 		<property name="dataAccess" ref="dataAccessBeanUser"></property>
