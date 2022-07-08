@@ -147,10 +147,10 @@ public class ELibro implements Serializable{
 	public String getGenerosString() {
 		String generos = "";
 		for (EGenero genero : this.getGeneros()) {
-			generos = generos + genero.getDescripcion() + ", ";
+			generos += genero.getDescripcion()+", "  ;
 		}
 		
-		return generos.substring(generos.length()-2,generos.length());
+		return generos.substring(0, generos.length()-2);
 	}
 	
 	public String ConvertToJson() {
