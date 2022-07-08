@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
 <title>Insert title here</title>
 </head>
@@ -115,7 +116,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de nacimiento:</b></label>
-                                    <input type="date" class="form-control" name="txtFecha" id="Fecha"/>
+                                    <input type="date" class="form-control" name="txtFecha" id="Fecha" />
 
 
                                 </div>
@@ -196,7 +197,8 @@
 	    $('#myModal' + modal + ' #Direccion').val(item.direccion);
 	    $('#myModal' + modal + ' #Localidad').val(item.localidad);
 	    $('#myModal' + modal + ' #Dni').val(item.dni);
-	    //$('#myModal' + modal + ' #Fecha').val(item.fechaNacimiento);
+	    var date = new Date(item.fechaNacimiento);
+	    $('#myModal' + modal + ' #Fecha').val(date.toJSON().slice(0,10));
 	}
 	
 	function openModal(modal, id) {
