@@ -28,8 +28,11 @@ public class AutorController {
 	@RequestMapping("/Autores.html")
 	public ModelAndView irAutores(){
 		ModelAndView MV = new ModelAndView();
+
 		MV.addObject("Mensaje", null);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.addObject("listaAutores", service.listadoAutores());
+		
 		MV.setViewName("Autores"); 
 		return MV;
 	}
@@ -38,6 +41,7 @@ public class AutorController {
 	public ModelAndView irAltaAutores(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("Mensaje", null);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("AltaAutores"); 
 		return MV;
 	}
@@ -64,20 +68,19 @@ public class AutorController {
 			
 			MV.addObject("Mensaje", Message);
 			MV.addObject("listaAutores", service.listadoAutores());
+			MV.addObject("Nacionalidades", service.listadoNacionalidades());
 			MV.setViewName("Autores"); 
 			return MV;
 	}
 	
 	@RequestMapping("/insertAutores.html")
-	public ModelAndView insertAutores(String txtNombre,String txtApellido,String txtMail,String selectNacionalidad){
+	public ModelAndView insertAutores(String txtNombre,String txtApellido,String txtMail,Integer selectNacionalidad){
 		ModelAndView MV = new ModelAndView();
 	String Message="";
 		
 		try{
-			
-			service.altaAutor(new EAutor(txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail));
-			
-            Message="Autor Ingresado con Exito!!";
+			service.altaAutor(new EAutor(txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail));
+           Message="Autor Ingresado con Exito!!";
 		
 		}
 		catch(Exception e)
@@ -87,18 +90,19 @@ public class AutorController {
 		}
 		
 		MV.addObject("Mensaje", Message);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("AltaAutores"); 
 		return MV;
 	}
 	
 	@RequestMapping("/modificarAutores.html")
-	public ModelAndView modificarAutores(String txtNombre,String txtApellido,String txtMail,String selectNacionalidad, Integer ID){
+	public ModelAndView modificarAutores(String txtNombre,String txtApellido,String txtMail,Integer selectNacionalidad, Integer ID){
 		ModelAndView MV = new ModelAndView();
 		String Message="";
 		
 		try{
 		
-			service.modificarAutor(new EAutor(ID,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail));
+			service.modificarAutor(new EAutor(ID,txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail));
 			
             Message="¡Autor modificado con éxito!";
 		
@@ -111,6 +115,7 @@ public class AutorController {
 		
 		MV.addObject("Mensaje", Message);
 		MV.addObject("listaAutores", service.listadoAutores());
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("Autores"); 
 		return MV;
 	}

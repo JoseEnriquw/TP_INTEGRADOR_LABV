@@ -27,6 +27,11 @@ public class ENacionalidad {
 	public ENacionalidad(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public ENacionalidad(Integer id) {
+		this.id = id;
+	}
+
 
 	public Integer getID() {
 		return id;

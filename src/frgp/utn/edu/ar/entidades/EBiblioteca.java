@@ -20,6 +20,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Check;
 
+import com.google.gson.Gson;
+
 
 @Entity
 @Table(name="biblioteca")
@@ -34,16 +36,18 @@ public class EBiblioteca implements Serializable{
 	private Date fechaAlta;
 	
     //1- En biblioteca, 2- Prestado	
-	@Check(constraints = "estado =1 OR estado=2")
-	private Integer estado;
+	@Check(constraints = "estado ='En biblioteca' OR estado='Prestado'")
+	private String estado;
 	
 	@ManyToOne(cascade= {CascadeType. ALL})
 	@JoinColumn(name="id_libro")
 	private ELibro libro ;
-	
-	
 
-	public EBiblioteca(int id, Date fechaAlta, Integer estado, ELibro libro) {
+	public EBiblioteca() {
+		
+	}
+
+	public EBiblioteca(int id, Date fechaAlta, String estado, ELibro libro) {
 		
 		this.id = id;
 		this.fechaAlta = fechaAlta;
@@ -51,11 +55,11 @@ public class EBiblioteca implements Serializable{
 		libro = libro;
 	}
 
-	public EBiblioteca(Date fechaAlta, Integer estado, ELibro libro) {
+	public EBiblioteca(Date fechaAlta, String estado, ELibro libro) {
 		
 		this.fechaAlta = fechaAlta;
 		this.estado = estado;
-		libro = libro;
+		this.libro = libro;
 	}
 
 	public ELibro getLibro() {
@@ -63,11 +67,7 @@ public class EBiblioteca implements Serializable{
 	}
 
 	public void setLibro(ELibro libro) {
-		libro = libro;
-	}
-
-	public EBiblioteca() {
-		
+		this.libro = libro;
 	}
 
 	public int getId() {
@@ -86,17 +86,21 @@ public class EBiblioteca implements Serializable{
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Integer getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Integer estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
 	@Override
 	public String toString() {
 		return "EBiblioteca [id=" + id + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
+	}
+
+	public String ConvertToJson() {
+		return new Gson().toJson(this);
 	}
 
 

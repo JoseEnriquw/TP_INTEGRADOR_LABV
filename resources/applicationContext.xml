@@ -20,9 +20,34 @@
 	<!-- Para que lea los metodos anotados con @Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<!-- EL SERVICIO Genero NECESITA EL DAO  -->
+	<bean id="dataAccessBeanGenero" class="frgp.utn.edu.ar.daoImpl.GeneroDaoImpl" 
+		scope="singleton"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
+		<!-- EL SERVICIO Libro NECESITA EL DAO  -->
+	<bean id="dataAccessBeanLibro" class="frgp.utn.edu.ar.daoImpl.LibroDaoImpl" 
+		scope="prototype"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
+	<!-- CREO EL SERVICIO PARA Libro -->
+	<bean id="serviceBeanLibro" class="frgp.utn.edu.ar.servicioImpl.LibroServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanLibro"></property>
+		<property name="dataAccessGenero" ref="dataAccessBeanGenero"></property>
+		<property name="dataAccessAutor" ref="dataAccessBeanAutor"></property>
+	</bean>
+	
 	<!-- CREO EL SERVICIO PARA Autor -->
 	<bean id="serviceBeanAutor" class="frgp.utn.edu.ar.servicioImpl.AutorServicioImpl">
 		<property name="dataAccess" ref="dataAccessBeanAutor"></property>
+		<property name="dataAccessNacionalidad" ref="dataAccessBeanNacionalidad"></property>
+	</bean>
+	
+	<bean id="dataAccessBeanNacionalidad" class="frgp.utn.edu.ar.daoImpl.NacionalidadDaoImpl" 
+		scope="singleton"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
 	</bean>
 	
 	<!-- EL SERVICIO Autor NECESITA EL DAO  -->
@@ -40,6 +65,18 @@
 	<bean id="dataAccessBeanCliente" class="frgp.utn.edu.ar.daoImpl.ClienteDaoImpl" 
 		scope="singleton"> 
 		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
+			<!-- EL SERVICIO Biblioteca NECESITA EL DAO  -->
+	<bean id="dataAccessBeanBiblioteca" class="frgp.utn.edu.ar.daoImpl.BibliotecaDaoImpl" 
+		scope="prototype"> 
+		<property name="sessionFactory" ref="sessionFactoryBean"></property> 
+	</bean>
+	
+	<!-- CREO EL SERVICIO PARA Biblioteca -->
+	<bean id="serviceBeanBiblioteca" class="frgp.utn.edu.ar.servicioImpl.BibliotecaServicioImpl">
+		<property name="dataAccess" ref="dataAccessBeanBiblioteca"></property>
+		<property name="dataAccessLibro" ref="dataAccessBeanLibro"></property>
 	</bean>
 	
 	<!-- CREO EL SERVICIO PARA USUARIO -->

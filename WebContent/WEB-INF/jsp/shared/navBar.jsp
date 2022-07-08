@@ -61,7 +61,6 @@
         </div>
     </nav>
    
-   
    <script>
    		$(function checkCookies(){
    			var cookies = document.cookie.split(";");
@@ -75,3 +74,4 @@
    			if (!bandera) window.location = 'http://localhost:9090/TP_INTEGRADOR_GRUPO_9/Login.html'; 
    		})
    </script>
+  

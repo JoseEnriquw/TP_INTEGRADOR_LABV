@@ -1,56 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
-
 	<%@include file="./shared/navBar.jsp"%>
 	<main>
 
+
 	<div class="container-fluid" style="margin-top: 20px">
-		<form action="insertAutores.html" method="post">
+		<form action="insertBiblioteca.html" method="post">
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
-					<h2>Alta de autores</h2>
+					<h2>Alta de biblioteca</h2>
 				</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<label><b>Nombre:</b></label> <input type="text" name="txtNombre" id="nombre" pattern="^[A-Za-z]+$"
-								placeholder="Ingrese el nombre" class="form-control" />
+							<label><b>Libro:</b></label> 
+							<select name="selectLibro" class="form-control">
+								<c:forEach items="${listaLibros}" var="item">
+                                	<option value="${item.getId() }">${item.getTitulo() }</option>
+                                </c:forEach>
+							</select>
 						</div>
+						
 						<div class="col-6">
-							<label><b>Apellido:</b></label> <input type="text" name="txtApellido" id="apellido" pattern="^[A-Za-z]+$"
-								placeholder="Ingrese el apellido" class="form-control" />
+							<label><b>Fecha de alta:</b></label> <input type="date" name="txtFecha" class="form-control" />
+
+
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Correo electrónico:</b></label> <input type="email" name="txtMail" id="mail" 
-								placeholder="Ingrese el correo electrónico" class="form-control" />
-						</div>
-						<div class="col-6">
-							<label><b>Nacionalidad:</b></label> <br /> 
-							<select name="selectNacionalidad" class="form-control">
-								<c:forEach items="${Nacionalidades}" var="item">
-                                	<option value="${item.getID() }">${item.getDescripcion() }</option>
-                                </c:forEach>
+							<label><b>Estado:</b></label> 
+							<select name="selectEstado" class="form-control">
+                                	<option value="En biblioteca">En biblioteca</option>
+                                	<option value="Prestado">Prestado</option>
 							</select>
 						</div>
-					</div>
-
+		
 					<div class="btn-group mt-3 px-2">
-						<input type="submit" class="btn btn-success form" value="Aceptar" id="btnAceptar" />
-							<a class="btn btn-danger form" href="Autores.html" >Cancelar</a>
+						<input type="submit" class="btn btn-success form" value="Aceptar" />
+							<a class="btn btn-danger form" href="Todosloslibros.html" >Cancelar</a>
 					</div>
 					<div>
                         <h3>${Mensaje}</h3>
@@ -58,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		</form>
+			</form>
 	</div>
 
 
@@ -66,8 +63,6 @@
 
 
 	<script>
-	
-	
     $('#tabla').DataTable({
 
         "language": {
@@ -91,6 +86,5 @@
     });
 
 </script>
-
 </body>
 </html>

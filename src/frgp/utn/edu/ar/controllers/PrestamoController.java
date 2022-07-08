@@ -46,6 +46,13 @@ public class PrestamoController {
 		return MV;
 	}
 	
+	@RequestMapping("/AltaPrestamos.html")
+	public ModelAndView irAltaPrestamos(){
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("AltaPrestamos"); 
+		return MV;
+	}
+	
 	
 	@RequestMapping("/insertPrestamos.html")
 	public ModelAndView insertPrestamos(String selectLibro,String txtFecha,Integer txtDias,String txtDNI){
@@ -89,7 +96,7 @@ public class PrestamoController {
 				
 				EBiblioteca Libro_ID = new EBiblioteca();
 				Libro_ID.setLibro(Libro_Titulo);
-				Libro_ID.setEstado(2);
+				Libro_ID.setEstado("Prestado");
 				Libro_ID.setFechaAlta(Util.convertStringToDate(txtFecha));
 			
 				

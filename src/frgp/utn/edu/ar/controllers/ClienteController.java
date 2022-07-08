@@ -93,6 +93,7 @@ public class ClienteController {
 	@RequestMapping("/AltaClientes.html")
 	public ModelAndView irAltaClientes(){
 		ModelAndView MV = new ModelAndView();
+		MV.addObject("Mensaje", null);
 		MV.setViewName("AltaClientes"); 
 		return MV;
 	}

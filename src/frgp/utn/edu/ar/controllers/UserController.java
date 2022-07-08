@@ -36,7 +36,6 @@ public class UserController {
 		this.service = (IUsuarioServicio) ctx.getBean("serviceBeanUser");
 	}
 	
-	
 	//Inicio
 	
 	@RequestMapping("/Login.html")
@@ -86,22 +85,6 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("/Todosloslibros.html")
-	public ModelAndView irTodosloslibros(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Todosloslibros"); 
-		return MV;
-	}
-	
-	@RequestMapping("/Biblioteca.html")
-	public ModelAndView irBiblioteca(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Biblioteca"); 
-		return MV;
-	}
-	
-
-	
 	@RequestMapping("/LogOut.html")
 	public ModelAndView irLogOut(HttpServletResponse response){
 		ModelAndView MV = new ModelAndView();
@@ -109,6 +92,7 @@ public class UserController {
 		return MV;
 	}
 	
+
 	@RequestMapping("/LogOutAceptar.html")
 	public ModelAndView LogOutAceptar(HttpServletResponse response){
 		ModelAndView MV = new ModelAndView();
@@ -118,22 +102,7 @@ public class UserController {
 		MV.setViewName("Login"); 
 		return MV;
 	}
-	
-	
-	@RequestMapping("/AltaLibros.html")
-	public ModelAndView irAltaLibros(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("AltaLibros"); 
-		return MV;
-	}
-	
-	@RequestMapping("/AltaPrestamos.html")
-	public ModelAndView irAltaPrestamos(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("AltaPrestamos"); 
-		return MV;
-	}
-	
+		
 	@RequestMapping("/AltaUsuario.html")
 	public ModelAndView irAltaUsuarios(){
 		ModelAndView MV = new ModelAndView();
