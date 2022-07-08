@@ -11,4 +11,5 @@ public interface IClienteServicio {
 	public ArrayList<ECliente> listadoClientes();
 	public void bajaCliente(Integer id);
 	public void modificarCliente(ECliente cliente);
+	ECliente obtenerUnRegistro(String dni);
 }

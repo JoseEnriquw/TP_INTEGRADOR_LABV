@@ -13,4 +13,6 @@ public interface IPrestamoServicio {
 	public  ArrayList<EPrestamo> listadoPrestamos() ;
 	
 	ArrayList<EPrestamo> getAllWhere(Object obj);
+
+	ECliente ExisteCliente(String dni);
 }

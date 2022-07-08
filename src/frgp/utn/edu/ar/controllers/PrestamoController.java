@@ -13,12 +13,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import frgp.utn.edu.ar.entidades.EPrestamo;
+import frgp.utn.edu.ar.daoImpl.ClienteDaoImpl;
 import frgp.utn.edu.ar.entidades.EAutor;
 import frgp.utn.edu.ar.entidades.EBiblioteca;
 import frgp.utn.edu.ar.entidades.ECliente;
 import frgp.utn.edu.ar.entidades.EGenero;
 import frgp.utn.edu.ar.entidades.ELibro;
 import frgp.utn.edu.ar.entidades.ENacionalidad;
+import frgp.utn.edu.ar.servicio.IClienteServicio;
 import frgp.utn.edu.ar.servicio.IPrestamoServicio;
 import frgp.utn.edu.ar.utiles.Util;
 
@@ -26,6 +28,8 @@ import frgp.utn.edu.ar.utiles.Util;
 public class PrestamoController {
 	@Autowired
 	public  IPrestamoServicio service;
+	@Autowired
+	public IClienteServicio clienteservicio;
 	
 	public void init(ServletConfig config) {
 		ApplicationContext ctx = WebApplicationContextUtils
@@ -50,61 +54,56 @@ public class PrestamoController {
 	
 		
 		try{
-			ENacionalidad nac = new ENacionalidad();
-			nac.setDescripcion("Arabe");
-			ECliente Cliente = new ECliente();
-			Cliente.setNombre("Regina");
-			Cliente.setDni(txtDNI);
-			Cliente.setApellido("laurentino");
-			Cliente.setEmail("zarasa@gamil.com");
-			Cliente.setFechaNacimiento(Util.convertStringToDate(txtFecha));
-			Cliente.setLocalidad("tigre");
-			Cliente.setNacionalidad(nac);
-			Cliente.setTelefono("123456");
-			Cliente.setDireccion("zarasa 123");
+			ECliente Cliente = clienteservicio.obtenerUnRegistro(txtDNI);
 			
-		/*	Integer dias = Integer.parseInt (txtDias);*/
+			if(clienteservicio.obtenerUnRegistro(txtDNI)!= null) {
+				
+				ENacionalidad nac = new ENacionalidad();
+				nac.setDescripcion("Arabe");				
+				
+				/*COMPROBAR QUE NO TENGA PRESTAMOS*/
+				
+				ELibro Libro_Titulo = new ELibro();
+				Libro_Titulo.setTitulo(selectLibro);
+				Libro_Titulo.setCantPaginas(500);
+				EAutor Autor = new EAutor();
+				Autor.setNombre("");
+				Autor.setApellido("");
+				Autor.setEmail("");
+				Autor.setNacionalidad(nac);			
+				Libro_Titulo.setAutor(Autor);
+				Libro_Titulo.setDescripcion("Libro epico");
+				Libro_Titulo.setFechaLanzamiento(Util.convertStringToDate(txtFecha));
+				
+				EGenero genero = new EGenero();
+				genero.setDescripcion("Aventura");
+				
+				
+				List<EGenero> lisgenero = new ArrayList<EGenero>();
+				lisgenero.add(genero);
+				
+				Libro_Titulo.setGeneros(lisgenero);
+				Libro_Titulo.setIdioma("Ingles");
+				
+							
+				
+				EBiblioteca Libro_ID = new EBiblioteca();
+				Libro_ID.setLibro(Libro_Titulo);
+				Libro_ID.setEstado(2);
+				Libro_ID.setFechaAlta(Util.convertStringToDate(txtFecha));
 			
-			/*COMPROBAR DNI EN BASE DE DATOS*/
+				
+			
+				service.altaPrestamo(new EPrestamo(Libro_ID ,Util.convertStringToDate(txtFecha), txtDias,Cliente));
+				
+	            Message="Prestamo Ingresado con Exito!!";
+			}
+			
+			else {
+				Message="Cliente Inexistente";
+			}
 			
 			
-			/*COMPROBAR QUE NO TENGA PRESTAMOS*/
-			
-			/*BUSCAR EL ID DEL LIBRO*/
-			ELibro Libro_Titulo = new ELibro();
-			Libro_Titulo.setTitulo(selectLibro);
-			Libro_Titulo.setCantPaginas(500);
-			EAutor Autor = new EAutor();
-			Autor.setNombre("");
-			Autor.setApellido("");
-			Autor.setEmail("");
-			Autor.setNacionalidad(nac);			
-			Libro_Titulo.setAutor(Autor);
-			Libro_Titulo.setDescripcion("Libro epico");
-			Libro_Titulo.setFechaLanzamiento(Util.convertStringToDate(txtFecha));
-			
-			EGenero genero = new EGenero();
-			genero.setDescripcion("Aventura");
-			
-			
-			List<EGenero> lisgenero = new ArrayList<EGenero>();
-			lisgenero.add(genero);
-			
-			Libro_Titulo.setGeneros(lisgenero);
-			Libro_Titulo.setIdioma("Ingles");
-			
-						
-			
-			EBiblioteca Libro_ID = new EBiblioteca();
-			Libro_ID.setLibro(Libro_Titulo);
-			Libro_ID.setEstado(2);
-			Libro_ID.setFechaAlta(Util.convertStringToDate(txtFecha));
-		
-			
-		
-			service.altaPrestamo(new EPrestamo(Libro_ID ,Util.convertStringToDate(txtFecha), txtDias,Cliente));
-			
-            Message="Prestamo Ingresado con Exito!!";
 		
 		}
 		catch(Exception e)
