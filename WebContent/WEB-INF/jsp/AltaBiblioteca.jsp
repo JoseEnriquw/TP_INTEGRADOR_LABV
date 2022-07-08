@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -21,8 +22,12 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<label><b>Libro:</b></label> <input type="text" name="txtLibro"
-								placeholder="Ingrese el libro" class="form-control" />
+							<label><b>Libro:</b></label> 
+							<select name="selectLibro" class="form-control">
+								<c:forEach items="${listaLibros}" var="item">
+                                	<option value="${item.getId() }">${item.getTitulo() }</option>
+                                </c:forEach>
+							</select>
 						</div>
 						
 						<div class="col-6">
@@ -44,6 +49,9 @@
 						<input type="submit" class="btn btn-success form" value="Aceptar" />
 							<a class="btn btn-danger form" href="Todosloslibros.html" >Cancelar</a>
 					</div>
+					<div>
+                        <h3>${Mensaje}</h3>
+                    </div>
 				</div>
 			</div>
 		</div>

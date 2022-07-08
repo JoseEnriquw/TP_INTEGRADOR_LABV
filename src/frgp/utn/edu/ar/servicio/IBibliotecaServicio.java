@@ -16,5 +16,7 @@ public interface IBibliotecaServicio {
 	
 	public EBiblioteca obtenerBiblioteca(Integer id);
 	
+	public ELibro obtenerLibro(Integer id);
+	
 
 }

@@ -6,15 +6,19 @@ import javax.servlet.ServletConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import frgp.utn.edu.ar.entidades.EBiblioteca;
 import frgp.utn.edu.ar.entidades.EGenero;
 import frgp.utn.edu.ar.entidades.ELibro;
+import frgp.utn.edu.ar.servicio.IBibliotecaServicio;
 import frgp.utn.edu.ar.servicio.ILibroServicio;
 import frgp.utn.edu.ar.utiles.Util;
 
+@Controller
 public class BibliotecaController {
 	@Autowired
 	public  IBibliotecaServicio service;
@@ -29,7 +33,8 @@ public class BibliotecaController {
 	@RequestMapping("/Biblioteca.html")
 	public ModelAndView irBiblioteca(){
 		ModelAndView MV = new ModelAndView();
-		MV.addObject("listaLibros", service.listadoLibros());
+		MV.addObject("listaLibros", service.listadoLibro());
+		MV.addObject("listaBibliotecas", service.listadoBiblioteca());
 		MV.setViewName("Biblioteca"); 
 		return MV;
 	}
@@ -37,9 +42,9 @@ public class BibliotecaController {
 	@RequestMapping("/AltaBiblioteca.html")
 	public ModelAndView irAltaBiblioteca(){
 		ModelAndView MV = new ModelAndView();
-		Object aux=service.listadoLibros();
+		Object aux=service.listadoLibro();
 		System.out.print(aux);
-		MV.addObject("listaLibros", service.listadoLibros());
+		MV.addObject("listaLibros", service.listadoLibro());
 		MV.addObject("Mensaje", null);
 		MV.setViewName("AltaBiblioteca"); 
 		return MV;
@@ -73,32 +78,28 @@ public class BibliotecaController {
 			return MV;
 	}*/
 	
-	@RequestMapping("/insertLibro.html")
-	public ModelAndView insertLibros(String txtTitulo,String txtFecha,String txtIdioma,Integer txtCant,Integer selectAutores,String txtDesc, Integer[] chkGenero){
+	@RequestMapping("/insertBiblioteca.html")
+	public ModelAndView insertBiblioteca(Integer selectLibro, String txtFecha, String selectEstado){
 		ModelAndView MV = new ModelAndView();
 	String Message="";
 		
 		try{
 		
-			ArrayList<EGenero> listaGeneros = new ArrayList<EGenero>();
-			for (Integer idGenero : chkGenero ) {
-				listaGeneros.add(service.getGenero(idGenero));
-			}
-			service.altaLibro(new ELibro(txtTitulo, Util.convertStringToDate(txtFecha) ,txtIdioma,txtCant,service.getAutor(selectAutores),txtDesc,listaGeneros));
 			
-            Message="Libro Ingresado con Exito!!";
+			service.altaBiblioteca(new EBiblioteca(Util.convertStringToDate(txtFecha),selectEstado,service.obtenerLibro(selectLibro)));
+			
+            Message="¡Biblioteca ingresada con éxito!";
 		
 		}
 		catch(Exception e)
 		{
-			Message="No se pudo Ingresar el libro";
+			Message="No se pudo ingresar la biblioteca";
 			e.printStackTrace();
 		}
 		
 		MV.addObject("Mensaje", Message);
-		MV.addObject("Generos", service.listadoGenero());
-		MV.addObject("Autores", service.listadoAutores());
-		MV.setViewName("AltaLibros"); 
+
+		MV.setViewName("AltaBiblioteca"); 
 		return MV;
 	}
 	

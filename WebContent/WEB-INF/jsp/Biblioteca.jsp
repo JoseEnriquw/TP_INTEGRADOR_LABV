@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
  <meta charset="UTF-8">
@@ -38,15 +39,25 @@
                             <th>Titulo</th>
                             <th>Fecha de alta</th>
                             <th>Estado</th>
+                            <th>Operaciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                            <td>Row 2 Data 1</td>
-                            <td>Row 2 Data 1</td>
-                        </tr>
+                        <c:forEach items="${listaBibliotecas}" var="item">
+								<tr>
+									
+                                	<td>${item.getId()}</td>
+                                	<td>${item.getLibro().getTitulo()}</td>
+                                	<td>${item.getFechaAlta()}</td>
+                                	<td>${item.getEstado()}</td>
+                                	
+                                	<td>
+                                    	<button class="btn btn-success" type="button" onclick='openModalEditar("Editar",${item.ConvertToJson()});'><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id});"><i class="fas fa-times"></i></button>
+                                	</td>
+                                	
+                            	</tr>
+						</c:forEach>
 
 
 

@@ -76,40 +76,43 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Título:</b></label>
-                                    <input type="text" placeholder="Ingrese el titulo" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el titulo" class="form-control" id="titulo" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de lanzamiento:</b></label>
-                                    <input type="date" class="form-control" />
+                                    <input type="date" class="form-control" id="fechaLanzamiento" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Idioma:</b></label>
-                                    <input type="text" placeholder="Ingrese el idioma" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el idioma" class="form-control" id="idioma" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Cant. de páginas:</b></label>
-                                    <input type="number" placeholder="Ingrese la cantidad de páginas" class="form-control" />
+                                    <input type="number" placeholder="Ingrese la cantidad de páginas" class="form-control" id="cantPaginas" />
 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Autor:</b></label>
-                                    <input type="text" placeholder="Ingrese el autor" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el autor" class="form-control" id="autor"/>
                                 </div>
                                 <div class="col-12">
                                     <label><b>Descripción:</b></label>
-                                    <input type="text" placeholder="Ingrese la cantidad de páginas" class="form-control" />
+                                    <input type="text" placeholder="Ingrese la cantidad de páginas" class="form-control" id="descripcion" />
 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label><b>Géneros:</b></label>
-                                    <input type="text" placeholder="Ingrese el género" class="form-control" />
-                                </div>
+                                <label><b>Géneros:</b></label>
+									<c:forEach items="${Generos}" var="item">
+								 		<input type="checkbox" name="chkGenero" value="${item.getID()}" id="${item.getDescripcion()}">
+                                 		<label for="chkGenero">${item.getDescripcion()}</label><br>
+									</c:forEach> 
+								</div>
 
                             </div>
 
@@ -141,26 +144,43 @@
 
                         </div>
                     </div>
+                    <form action="bajaLibros.html" method="post">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                    	<input type="hidden" id="id" name="ID" />
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-
                     </div>
+                    </form>
                 </div>
 
             </div>
         </div>
 
 	</div>
-
+	<input type="hidden" id="Mensaje" value="${Mensaje}">
 	</main>
 
 
 	<script>
-	function openModal(modal) {
-        $('#myModal' + modal).modal('show');
-    }
-
+	function openModalEditar(modal, Jsonitem) {
+	    $('#myModal' + modal).modal('show');
+	    var item = Jsonitem;
+	    $('#myModal' + modal + ' #id').val(item.id);
+	    $('#myModal' + modal + ' #titulo').val(item.titulo);
+	    $('#myModal' + modal + ' #cantPaginas').val(item.cantPaginas);
+	    $('#myModal' + modal + ' #idioma').val(item.idioma);
+	    $('#myModal' + modal + ' #fechaLanzamiento').val(new Date(item.fechaLanzamiento).toISOString().split('T')[0]);
+	    for (const genero of item.generos){
+	    	document.getElementById(genero.descripcion).checked = true;
+	    }
+	    
+	}
+	
+	function openModal(modal, id) {
+	    $('#myModal' + modal).modal('show');
+	    $('#myModal' + modal + ' #id').val(id);
+	}
+	
     $('#tabla').DataTable({
 
         "language": {
@@ -183,6 +203,17 @@
         }
 
     });
+    
+    $(function() {
+    	if ($('#Mensaje').val()){
+    		Swal.fire({
+    			  text: $('#Mensaje').val(),
+    			  confirmButtonText: 'Aceptar',
+    			  confirmButtonColor: '#3085d6'
+    			})
+    	}
+    	
+    })
 
 </script>
 

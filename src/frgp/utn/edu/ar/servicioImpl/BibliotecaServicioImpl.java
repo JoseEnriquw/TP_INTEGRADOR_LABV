@@ -50,6 +50,11 @@ public class BibliotecaServicioImpl implements IBibliotecaServicio{
 		return null;
 	}
 
+	@Override
+	public ELibro obtenerLibro(Integer id) {
+		return dataAccessLibro.get(id);
+	}
+
 /*	@Override
 	public void bajaLibro(ELibro Libro) {
 		dataAccess.delete(Libro);
