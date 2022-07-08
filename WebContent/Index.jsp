@@ -13,6 +13,7 @@
     <title>Document</title>
 </head>
 <body>
+ 
 <%@include file="./WEB-INF/jsp/shared/navBar.jsp"%>
 
             <div class="background">
@@ -24,5 +25,8 @@
       <main>
 
       </main>
+       
+      
 </body>
+
 </html>
