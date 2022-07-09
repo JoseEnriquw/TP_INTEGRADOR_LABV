@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.google.gson.Gson;
+
 @Entity
 @Table(name="prestamo")
 public class EPrestamo {
@@ -101,6 +103,10 @@ public class EPrestamo {
 	public String toString() {
 		return "EPrestamo [id=" + id + ", biblioteca=" + biblioteca + ", fechaPrestamo=" + fechaPrestamo + ", cantDias="
 				+ cantDias + ", cliente=" + cliente + "]";
+	}
+	
+	public String ConvertToJson() {
+		return new Gson().toJson(this);
 	}
 	
 }

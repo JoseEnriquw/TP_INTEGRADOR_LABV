@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -26,12 +27,9 @@
 					<div class="row">
 						<div class="col-6">
 							<label><b>Libro : </b></label> <select class="form-control" name="selectLibro">
-								<option value="">Seleccione una opcion</option>
-								<option value="El senior de los anillos">El senior de los anillos</option>
-								<option value="El Hobbit">El Hobbit</option>
-								<option value="El Silmarillion">El Silmarillion</option>
-								<option value="Cuentos inconclusos">Cuentos inconclusos de numenor y la tierra
-									media</option>
+								<c:forEach items="${listaLibrosbiblioteca}" var="item">
+                                	<option value="${item.getId() }">${item.getTitulo() }</option>
+                                </c:forEach>
 							</select>
 						</div>
 						<div class="col-6">

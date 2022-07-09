@@ -93,6 +93,8 @@
 	<!-- CREO EL SERVICIO PARA PRESTAMO -->
 	<bean id="serviceBeanPrestamo" class="frgp.utn.edu.ar.servicioImpl.PrestamoServicioImpl">
 		<property name="dataAccess" ref="dataAccessBeanPrestamo"></property>
+		<property name="dataAccessCliente" ref="dataAccessBeanCliente"></property>
+		<property name="dataAccessBiblioteca" ref="dataAccessBeanBiblioteca"></property>
 	</bean>
 	
 	<!-- EL SERVICIO PRESTAMO NECESITA EL DAO  -->

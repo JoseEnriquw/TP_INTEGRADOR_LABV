@@ -6,7 +6,7 @@ import frgp.utn.edu.ar.entidades.ECliente;
 
 public interface IClienteDao extends IGenericDao<ECliente,Integer>{
 
-	public List<ECliente> getByDni(String dni);
+	public ECliente getByDni(String dni);
 
 	ECliente getByName(String dni);
 }

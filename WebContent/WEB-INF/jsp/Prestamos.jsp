@@ -43,8 +43,8 @@
                                 	<td>${item.getCliente().getNombre()}</td>
                                 	
                                 	<td>
-                                    	<button class="btn btn-success" type="button" onclick="openModal('Editar');"><i class="fas fa-edit"></i></button>
-                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar');"><i class="fas fa-times"></i></button>
+                                    	<button class="btn btn-success" type="button" onclick='openModaleditar("Editar",${item.ConvertToJson()});'><i class="fas fa-edit"></i></button>
+                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id}, ${item.getBiblioteca().getId()});"><i class="fas fa-times"></i></button>
                                 	</td>
                             	</tr>
 							</c:forEach>     
@@ -58,6 +58,7 @@
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->
                 <div class="modal-content">
+                <form action="modificarPrestamo.html" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Editar Préstamo</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -69,21 +70,22 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Biblioteca:</b></label>
-                                    <input type="text" placeholder="Ingrese la biblioteca" class="form-control" />
+                                    <input type="text" placeholder="Ingrese la biblioteca" class="form-control" id="Titulo" />
+                                     <input type="hidden" name="ID" id="id" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de préstamo:</b></label>
-                                    <input type="date" class="form-control" />
+                                    <input type="date" class="form-control" id="FechaPrestamo"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label><b>Cant. de páginas:</b></label>
-                                    <input type="number" placeholder="Ingrese la cantidad de páginas" class="form-control" />
+                                    <label><b>Cant de dias:</b></label>
+                                    <input type="number" placeholder="Ingrese la cantidad de páginas" name="txtDias" class="form-control" id="Dias" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Cliente:</b></label>
-                                    <input type="text" placeholder="Ingrese el cliente" class="form-control" />
+                                    <input type="text" placeholder="Ingrese el cliente" class="form-control" id="Cliente"/>
                                 </div>
                             </div>
 
@@ -91,12 +93,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
                     </div>
+                     </form>
                 </div>
-
+			 <h3>${Mensaje}</h3>
             </div>
         </div>
         <div class="modal fade" id="myModalEliminar" tabindex="-1" role="dialog">
@@ -116,11 +119,14 @@
 
                         </div>
                     </div>
+                   <form action="bajaPrestamos.html" method="post">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                    	<input type="hidden" id="id" name="ID" />
+                    	<input type="hidden" id="idbiblioteca" name="IDbiblioteca" />
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-
                     </div>
+                    </form>
                 </div>
 
             </div>
@@ -131,9 +137,26 @@
 
 
 <script>
-	function openModal(modal) {
+
+function openModal(modal, id, idbiblioteca) {
+    $('#myModal' + modal).modal('show');
+    $('#myModal' + modal + ' #id').val(id);
+    $('#myModal' + modal + ' #idbiblioteca').val(idbiblioteca);
+}
+
+
+	function openModaleditar(modal,Jsonitem) {
 	    $('#myModal' + modal).modal('show');
+	    var item = Jsonitem;
+	    $('#myModal' + modal + ' #id').val(item.id);
+	    $('#myModal' + modal + ' #Titulo').val(item.biblioteca.libro.titulo);
+	    var date = new Date(item.fechaPrestamo);
+	    $('#myModal' + modal + ' #FechaPrestamo').val(date.toJSON().slice(0,10));
+	    $('#myModal' + modal + ' #Dias').val(item.cantDias);
+	    $('#myModal' + modal + ' #Cliente').val(item.cliente.nombre);
 	}
+	
+	
     $('#tabla').DataTable({
 
         "language": {
@@ -156,7 +179,17 @@
         }
 
     });
-
+	
+    $(function() {
+    	if ($('#Mensaje').val()){
+    		Swal.fire({
+    			  text: $('#Mensaje').val(),
+    			  confirmButtonText: 'Aceptar',
+    			  confirmButtonColor: '#3085d6'
+    			})
+    	}
+    	
+    })
 </script>
 </body>
 </html>

@@ -28,8 +28,8 @@ import frgp.utn.edu.ar.utiles.Util;
 public class PrestamoController {
 	@Autowired
 	public  IPrestamoServicio service;
-	@Autowired
-	public IClienteServicio clienteservicio;
+	/*@Autowired
+	public IClienteServicio clienteservicio;*/
 	
 	public void init(ServletConfig config) {
 		ApplicationContext ctx = WebApplicationContextUtils
@@ -49,59 +49,28 @@ public class PrestamoController {
 	@RequestMapping("/AltaPrestamos.html")
 	public ModelAndView irAltaPrestamos(){
 		ModelAndView MV = new ModelAndView();
+		MV.addObject("listaLibrosbiblioteca", service.listadolibrosselect());
 		MV.setViewName("AltaPrestamos"); 
 		return MV;
 	}
 	
 	
 	@RequestMapping("/insertPrestamos.html")
-	public ModelAndView insertPrestamos(String selectLibro,String txtFecha,Integer txtDias,String txtDNI){
+	public ModelAndView insertPrestamos(Integer selectLibro,String txtFecha,Integer txtDias,String txtDNI){
 		ModelAndView MV = new ModelAndView();
 	String Message="";
 	
 		
 		try{
-			ECliente Cliente = clienteservicio.obtenerUnRegistro(txtDNI);
+			ECliente Cliente = service.ExisteCliente(txtDNI);
 			
-			if(clienteservicio.obtenerUnRegistro(txtDNI)!= null) {
+			if(Cliente!= null) {
+				EBiblioteca Biblioteca = service.ObtenerBiblioteca(selectLibro);
+				service.altaPrestamo(new EPrestamo(Biblioteca ,Util.convertStringToDate(txtFecha), txtDias,Cliente));
 				
-				ENacionalidad nac = new ENacionalidad();
-				nac.setDescripcion("Arabe");				
+				Biblioteca.setEstado("Prestado");
 				
-				/*COMPROBAR QUE NO TENGA PRESTAMOS*/
-				
-				ELibro Libro_Titulo = new ELibro();
-				Libro_Titulo.setTitulo(selectLibro);
-				Libro_Titulo.setCantPaginas(500);
-				EAutor Autor = new EAutor();
-				Autor.setNombre("");
-				Autor.setApellido("");
-				Autor.setEmail("");
-				Autor.setNacionalidad(nac);			
-				Libro_Titulo.setAutor(Autor);
-				Libro_Titulo.setDescripcion("Libro epico");
-				Libro_Titulo.setFechaLanzamiento(Util.convertStringToDate(txtFecha));
-				
-				EGenero genero = new EGenero();
-				genero.setDescripcion("Aventura");
-				
-				
-				List<EGenero> lisgenero = new ArrayList<EGenero>();
-				lisgenero.add(genero);
-				
-				Libro_Titulo.setGeneros(lisgenero);
-				Libro_Titulo.setIdioma("Ingles");
-				
-							
-				
-				EBiblioteca Libro_ID = new EBiblioteca();
-				Libro_ID.setLibro(Libro_Titulo);
-				Libro_ID.setEstado("Prestado");
-				Libro_ID.setFechaAlta(Util.convertStringToDate(txtFecha));
-			
-				
-			
-				service.altaPrestamo(new EPrestamo(Libro_ID ,Util.convertStringToDate(txtFecha), txtDias,Cliente));
+				service.EditarBiblioteca(Biblioteca);
 				
 	            Message="Prestamo Ingresado con Exito!!";
 			}
@@ -124,5 +93,69 @@ public class PrestamoController {
 		return MV;
 	}
 	
+	@RequestMapping("/bajaPrestamos.html")
+	public ModelAndView deletePrestamos(Integer ID, Integer IDbiblioteca){
+		
+		ModelAndView MV = new ModelAndView();
+		String Message="";
+			
+			try{
+				EPrestamo prestamos = new EPrestamo();
+				prestamos.setId(ID);
+				
+				EBiblioteca Biblioteca = service.ObtenerBibliotecabyid(IDbiblioteca);				
+				Biblioteca.setEstado("En biblioteca");
+				
+				service.EditarBiblioteca(Biblioteca);
+				service.bajaPrestamo(prestamos);
+				
+	            Message="¡Autor eliminado con éxito!";
+			
+			}
+			catch(Exception e)
+			{
+				Message="No se pudo eliminar el autor";
+				e.printStackTrace();
+			}
+			
+			MV.addObject("Mensaje", Message);	
+			MV.addObject("listaPrestamos", service.listadoPrestamos());
+			MV.setViewName("Prestamos"); 
+			return MV;
+	}
 	
+	@RequestMapping("/modificarPrestamo.html")
+	public ModelAndView modificarPrestamos(Integer ID,Integer txtDias){
+		ModelAndView MV = new ModelAndView();
+		String Message="";
+		
+		try{
+			
+			EPrestamo prestamo = service.obtenerPrestamobyID(ID);
+			
+			if (prestamo.getCantDias()<txtDias) {
+				
+				prestamo.setCantDias(txtDias);
+				
+				service.EditarPrestamo(prestamo);
+				
+	            Message="¡Prestamo modificado con éxito!";
+			} else {
+				Message="¡Cantidad de dias menor al prestamo actual!";
+				
+			}
+			
+		
+		}
+		catch(Exception e)
+		{
+			Message="No se pudo modificar el Autor";
+			e.printStackTrace();
+		}
+		
+		MV.addObject("Mensaje", Message);
+		MV.addObject("listaPrestamos", service.listadoPrestamos());
+		MV.setViewName("Prestamos"); 
+		return MV;
+	}
 }

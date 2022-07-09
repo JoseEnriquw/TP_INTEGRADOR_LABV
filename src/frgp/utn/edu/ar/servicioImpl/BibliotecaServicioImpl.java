@@ -45,9 +45,8 @@ public class BibliotecaServicioImpl implements IBibliotecaServicio{
 	}
 
 	@Override
-	public EBiblioteca obtenerBiblioteca(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public EBiblioteca obtenerBiblioteca(Integer id) {	
+		return dataAccess.get(id);
 	}
 
 	@Override
@@ -60,6 +59,12 @@ public class BibliotecaServicioImpl implements IBibliotecaServicio{
 		dataAccess.delete(Libro);
 		
 	}*/
+	
+	@Override
+	public void modificarBiblioteca(EBiblioteca biblioteca) {
+		dataAccess.update(biblioteca);
+		
+	}
 
 
 

@@ -13,10 +13,10 @@ import frgp.utn.edu.ar.utiles.Util;
 public class ClienteDaoImpl extends GenericDaoImpl<ECliente,Integer> implements IClienteDao{
 
 	@Override
-	public List<ECliente> getByDni(String dni) {
+	public ECliente getByDni(String dni) {
 		
-		/*return (ECliente) this.hibernateTemplate.find(Util.Q_CLIENTE_BY_DNI,dni).get(0);*/
-		return (List<ECliente>)(List<?>)hibernateTemplate.find(Util.Q_CLIENTE_BY_DNI,dni);
+		return (ECliente) this.hibernateTemplate.find(Util.Q_CLIENTE_BY_DNI,dni).get(0);
+		
 	}
 
 	
