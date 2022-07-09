@@ -25,17 +25,17 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<label><b>Nombre:</b></label> <input type="text" name="txtNombre"
+							<label><b>Nombre:</b></label> <input type="text" name="txtNombre" id="nombre" pattern="^[A-Za-z]+$"
 								placeholder="Ingrese el nombre" class="form-control" />
 						</div>
 						<div class="col-6">
-							<label><b>Apellido:</b></label> <input type="text" name="txtApellido"
+							<label><b>Apellido:</b></label> <input type="text" name="txtApellido" id="apellido" pattern="^[A-Za-z]+$"
 								placeholder="Ingrese el apellido" class="form-control" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Correo electrónico:</b></label> <input type="text" name="txtMail"
+							<label><b>Correo electrónico:</b></label> <input type="email" name="txtMail" id="mail" 
 								placeholder="Ingrese el correo electrónico" class="form-control" />
 						</div>
 						<div class="col-6">
@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="btn-group mt-3 px-2">
-						<input type="submit" class="btn btn-success form" value="Aceptar" />
+						<input type="submit" class="btn btn-success form" value="Aceptar" id="btnAceptar" />
 							<a class="btn btn-danger form" href="Autores.html" >Cancelar</a>
 					</div>
 					<div>
@@ -66,6 +66,8 @@
 
 
 	<script>
+	
+	
     $('#tabla').DataTable({
 
         "language": {

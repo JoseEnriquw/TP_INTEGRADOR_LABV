@@ -31,12 +31,12 @@
         <form action="validar_usuario.html" method="post" class="form form-login">
           <div class="form-field">
             <label class="user" for="login-username"><span class="hidden">Usuario</span></label>
-            <input id="login-username" type="text" class="form-input" placeholder="Usuario" required>
+            <input id="login-username" type="text" class="form-input" placeholder="Usuario" name="nombreU" required>
           </div>
   
           <div class="form-field">
             <label class="lock" for="login-password"><span class="hidden">Contraseña</span></label>
-            <input id="login-password" type="password" class="form-input" placeholder="Contraseña" required>
+            <input id="login-password" type="password" class="form-input" placeholder="Contraseña" name="passU" required>
           </div>
   
           <div class="form-field">

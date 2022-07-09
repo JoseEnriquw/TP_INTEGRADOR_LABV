@@ -13,7 +13,7 @@ public class UsuarioDaoImpl extends GenericDaoImpl<EUsuario,Integer> implements 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	public EUsuario getByName(String nombreUser) {
-		return this.hibernateTemplate.get(EUsuario.class, nombreUser);
+		return (EUsuario) this.hibernateTemplate.find("from EUsuario where nombreU=?", nombreUser).get(0);
 	}
 
 }

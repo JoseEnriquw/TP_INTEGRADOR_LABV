@@ -6,7 +6,9 @@ import java.util.Map;
 
 import javax.persistence.Convert;
 import javax.servlet.ServletConfig;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.exception.spi.ConversionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +45,10 @@ public class UserController {
 		return MV;
 	}
 	
+	
+	
 	@RequestMapping(value ="validar_usuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView validarUsuario(String nombreU, String passU){
+	public ModelAndView validarUsuario(String nombreU, String passU, HttpServletResponse response){
 		
 		ModelAndView MV = new ModelAndView();
 		String Message="";
@@ -58,7 +62,11 @@ public class UserController {
 			}
 			else if(user.getNombreU().equals(nombreU)) 
 			{
-				MV.setViewName("Biblioteca"); 
+				MV.addObject("Usuario", nombreU);
+				Cookie userCookie = new Cookie("userCookieAlejandria", nombreU);
+				userCookie.setMaxAge(60*60*24);
+				response.addCookie(userCookie);
+				MV.setViewName("../../Index"); 
 				return MV;
 			}
 			else {
@@ -85,12 +93,22 @@ public class UserController {
 	}
 	
 	@RequestMapping("/LogOut.html")
-	public ModelAndView irLogOut(){
+	public ModelAndView irLogOut(HttpServletResponse response){
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("LogOut"); 
 		return MV;
 	}
 	
+	@RequestMapping("/LogOutAceptar.html")
+	public ModelAndView LogOutAceptar(HttpServletResponse response){
+		ModelAndView MV = new ModelAndView();
+		Cookie userCookie = new Cookie("userCookieAlejandria", null);
+		userCookie.setMaxAge(0);
+		response.addCookie(userCookie);
+		MV.setViewName("Login"); 
+		return MV;
+	}
+
 	@RequestMapping("/AltaPrestamos.html")
 	public ModelAndView irAltaPrestamos(){
 		ModelAndView MV = new ModelAndView();

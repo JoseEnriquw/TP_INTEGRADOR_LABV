@@ -28,22 +28,23 @@
     <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 
     <div class="container">
-        <div class="logo">Esta seguro que desea salir?</div>
+        <div class="logo">Está seguro que desea salir?</div>
          <div class="login-item"> 
-            <form action="" method="post" class="form form-login"> 
+            <form action="LogOutAceptar.html" method="post" class="form form-login"> 
 
                 <div class="form-field">
-                     <input type="submit" value="Salir"> <a href="AltaClientes.html"> </input>  
-                    <!-- <a href="AltaClientes.html"> <button type="button" class="btn btn-secondary"> Agregar Cliente</button> </a> -->
-                   
-
+                     <input type="submit" value="Aceptar" name="btnAceptar"> 
                 </div>
                 <div class="form-field">
-                    <input type="submit" value="Cancelar"> 
-                   
+                    <input type="button" value="Cancelar" name="btnCancelar" onclick="return cancelar();"> 
                 </div>
             </form> 
         </div>
     </div>
+    <script>
+    	function cancelar(){
+    		window.location = "http://localhost:9090/TP_INTEGRADOR_GRUPO_9/Index.jsp"
+    	}
+    </script>
 </body>
 </html>

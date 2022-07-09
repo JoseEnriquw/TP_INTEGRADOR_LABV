@@ -59,4 +59,20 @@
            
         </div>
     </nav>
-  
+
+   
+   
+   <script>
+   		$(function checkCookies(){
+   			var cookies = document.cookie.split(";");
+   			var bandera = false;
+   			for (const cookie of cookies){
+   				if (cookie.split("=")[0] == "userCookieAlejandria"){
+   					bandera = true;
+   					$('#usuarioLogueado').text(cookie.split("=")[1])
+   				}
+   			}
+   			if (!bandera) window.location = 'http://localhost:9090/TP_INTEGRADOR_GRUPO_9/Login.html'; 
+   		})
+   </script>
+

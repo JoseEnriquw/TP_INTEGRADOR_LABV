@@ -22,13 +22,14 @@ public class AutorController {
 		ApplicationContext ctx = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		
-		this.service = (IAutorServicio) ctx.getBean("serviceBean");
+		this.service = (IAutorServicio) ctx.getBean("serviceBeanAutor");
 	}
 	
 	@RequestMapping("/Autores.html")
 	public ModelAndView irAutores(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("Nacionalidades", service.listadoNacionalidades());
+		MV.addObject("Mensaje", null);
 		MV.addObject("listaAutores", service.listadoAutores());
 		
 		MV.setViewName("Autores"); 
@@ -79,6 +80,7 @@ public class AutorController {
 		try{
 			
 			service.altaAutor(new EAutor(txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail));
+
 			
             Message="Autor Ingresado con Exito!!";
 		
