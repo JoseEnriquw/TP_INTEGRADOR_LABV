@@ -29,15 +29,13 @@ public class ClienteController {
 		ApplicationContext ctx = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		
-		this.service = (IClienteServicio) ctx.getBean("serviceBean");
+		this.service = (IClienteServicio) ctx.getBean("serviceBeanCliente");
 	}
-	
-	
-	//Inicio
 	
 	@RequestMapping("/Clientes.html")
 	public ModelAndView irClientes(){
 		ModelAndView MV = new ModelAndView();
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.addObject("listaClientes", service.listadoClientes());
 		MV.setViewName("Clientes"); 
 		return MV;
@@ -63,6 +61,7 @@ public class ClienteController {
 			
 			MV.addObject("Mensaje", Message);
 			MV.addObject("listaClientes", service.listadoClientes());
+			MV.addObject("Nacionalidades", service.listadoNacionalidades());
 			MV.setViewName("Clientes"); 
 			return MV;
 	}
@@ -86,6 +85,7 @@ public class ClienteController {
 		
 		MV.addObject("Mensaje", Message);
 		MV.addObject("listaClientes", service.listadoClientes());
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("Clientes"); 
 		return MV;
 	}
@@ -94,6 +94,7 @@ public class ClienteController {
 	public ModelAndView irAltaClientes(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("Mensaje", null);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("AltaClientes"); 
 		return MV;
 	}
@@ -120,6 +121,7 @@ public class ClienteController {
 		}
 		
 		MV.addObject("Mensaje", Message);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("AltaClientes"); 
 		return MV;
 	}

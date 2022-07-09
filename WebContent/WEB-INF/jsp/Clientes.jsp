@@ -126,10 +126,9 @@
                                     <label><b>Nacionalidad:</b></label>
                                     <br />
                                 <select name="selectNacionalidad" class="form-control">
-                                     Seleccione
-									<option value="Argentina">Argentina</option>
-									<option value="Uruguay" selected>Uruguay</option>
-									<option value="Brasil">Brasil</option>
+                                 <c:forEach items="${Nacionalidades}" var="item">
+                                	<option value="${item.getID() }">${item.getDescripcion() }</option>
+                                 </c:forEach>
 								</select>
 
                                 </div>

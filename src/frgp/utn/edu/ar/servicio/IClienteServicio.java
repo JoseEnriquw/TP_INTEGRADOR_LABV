@@ -3,6 +3,7 @@ package frgp.utn.edu.ar.servicio;
 import java.util.ArrayList;
 
 import frgp.utn.edu.ar.entidades.ECliente;
+import frgp.utn.edu.ar.entidades.ENacionalidad;
 
 public interface IClienteServicio {
 
@@ -11,4 +12,6 @@ public interface IClienteServicio {
 	public ArrayList<ECliente> listadoClientes();
 	public void bajaCliente(Integer id);
 	public void modificarCliente(ECliente cliente);
+	public ArrayList<ENacionalidad> listadoNacionalidades();
+	public ENacionalidad getNacionalidad(Integer id) ;
 }

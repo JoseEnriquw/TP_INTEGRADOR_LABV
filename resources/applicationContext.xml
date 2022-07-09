@@ -59,6 +59,7 @@
 	<!-- CREO EL SERVICIO PARA Cliente -->
 	<bean id="serviceBeanCliente" class="frgp.utn.edu.ar.servicioImpl.ClienteServicioImpl">
 		<property name="dataAccess" ref="dataAccessBeanCliente"></property>
+		<property name="dataAccessNacionalidad" ref="dataAccessBeanNacionalidad"></property>
 	</bean>
 	
 	<!-- EL SERVICIO Cliente NECESITA EL DAO  -->
