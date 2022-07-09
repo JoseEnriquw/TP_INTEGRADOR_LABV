@@ -14,10 +14,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Check;
+
+import com.google.gson.Gson;
 
 
 @Entity
@@ -33,24 +36,34 @@ public class EBiblioteca implements Serializable{
 	private Date fechaAlta;
 	
     //1- En biblioteca, 2- Prestado	
-	@Check(constraints = "estado =1 OR estado=2")
-	private Integer estado;
+	@Check(constraints = "estado ='En biblioteca' OR estado='Prestado'")
+	private String estado;
 	
-	@OneToMany()
-	@JoinColumn(name="id_biblioteca")
-	private List<ELibro> listaLibros = new ArrayList<ELibro>();
+	@ManyToOne(cascade= {CascadeType. ALL})
+	@JoinColumn(name="id_libro")
+	private ELibro libro ;
+
 	
-	public List<ELibro> getListaLibros() {
-		return listaLibros;
+
+	public ELibro getLibro() {
+		return libro;
 	}
 
-	public void setListaLibros(List<ELibro> listaLibros) {
-		this.listaLibros = listaLibros;
+	public void setLibro(ELibro libro) {
+		this.libro = libro;
 	}
 
 	public EBiblioteca() {
 		
 	}
+	
+	public EBiblioteca(Date fechaAlta, String estado, ELibro libro) {
+		this.fechaAlta = fechaAlta;
+		this.estado = estado;
+		this.libro = libro;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -68,17 +81,21 @@ public class EBiblioteca implements Serializable{
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Integer getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Integer estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
 	@Override
 	public String toString() {
 		return "EBiblioteca [id=" + id + ", fechaAlta=" + fechaAlta + ", estado=" + estado + "]";
+	}
+
+	public String ConvertToJson() {
+		return new Gson().toJson(this);
 	}
 
 

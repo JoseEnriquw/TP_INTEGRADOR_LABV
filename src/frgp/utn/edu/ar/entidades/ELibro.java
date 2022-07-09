@@ -22,6 +22,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
+import com.google.gson.reflect.TypeToken;
+
+
 
 @Entity
 @Table(name="libro")
@@ -147,10 +152,9 @@ public class ELibro implements Serializable{
 	public String getGenerosString() {
 		String generos = "";
 		for (EGenero genero : this.getGeneros()) {
-			generos += genero.getDescripcion()+", "  ;
+			generos += genero.getDescripcion()+", " ;
 		}
-		
-		return generos.substring(0, generos.length()-2);
+		return generos.substring(0,generos.length()-2);
 	}
 	
 	public String ConvertToJson() {

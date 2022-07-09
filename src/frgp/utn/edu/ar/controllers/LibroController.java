@@ -33,6 +33,7 @@ public class LibroController {
 	public ModelAndView irLibros(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("listaLibros", service.listadoLibros());
+		MV.addObject("Generos", service.listadoGenero());
 		MV.addObject("Autores", service.listadoAutores());
 		MV.setViewName("Todosloslibros"); 
 		return MV;
@@ -74,7 +75,7 @@ public class LibroController {
 			MV.addObject("listaLibros", service.listadoLibros());
 			MV.addObject("Generos", service.listadoGenero());
 			MV.addObject("Autores", service.listadoAutores());
-			MV.setViewName("Libros"); 
+			MV.setViewName("Todosloslibros"); 
 			return MV;
 	}
 	
@@ -103,6 +104,7 @@ public class LibroController {
 		MV.addObject("Mensaje", Message);
 		MV.addObject("Generos", service.listadoGenero());
 		MV.addObject("Autores", service.listadoAutores());
+		MV.addObject("listaLibros", service.listadoLibros());
 		MV.setViewName("AltaLibros"); 
 		return MV;
 	}

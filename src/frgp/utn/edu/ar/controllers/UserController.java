@@ -74,13 +74,6 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("/Biblioteca.html")
-	public ModelAndView irBiblioteca(){
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("Biblioteca"); 
-		return MV;
-	}
-	
 	@RequestMapping("/Prestamos.html")
 	public ModelAndView irPrestamos(){
 		ModelAndView MV = new ModelAndView();
@@ -104,7 +97,7 @@ public class UserController {
 		MV.setViewName("Login"); 
 		return MV;
 	}
-	
+
 	@RequestMapping("/AltaPrestamos.html")
 	public ModelAndView irAltaPrestamos(){
 		ModelAndView MV = new ModelAndView();
