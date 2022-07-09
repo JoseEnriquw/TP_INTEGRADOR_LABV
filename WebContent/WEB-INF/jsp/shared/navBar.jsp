@@ -75,5 +75,16 @@
    			}
    			if (!bandera) window.location = 'http://localhost:9090/TP_INTEGRADOR_GRUPO_9/Login.html'; 
    		})
+   		
+   	 $(function() {
+    	if ($('#Mensaje').val()){
+    		Swal.fire({
+    			  text: $('#Mensaje').val(),
+    			  confirmButtonText: 'Aceptar',
+    			  confirmButtonColor: '#3085d6'
+    			})
+    	}
+    	
+    })
    </script>
 

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 import frgp.utn.edu.ar.entidades.EAutor;
-import frgp.utn.edu.ar.entidades.ENacionalidad;
 import frgp.utn.edu.ar.servicio.IAutorServicio;
 
 
@@ -56,7 +55,7 @@ public class AutorController {
 				autor.setId(ID);
 				service.bajaAutor(autor);
 				
-	            Message="�Autor eliminado con �xito!";
+	            Message="Autor eliminado con Exito!";
 			
 			}
 			catch(Exception e)
@@ -106,12 +105,11 @@ public class AutorController {
 			service.modificarAutor(new EAutor(ID,txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail));
 			
             Message="�Autor modificado con �xito!";
-		
+   
 		}
 		catch(Exception e)
 		{
 			Message="No se pudo modificar el Autor";
-			e.printStackTrace();
 		}
 		
 		MV.addObject("Mensaje", Message);

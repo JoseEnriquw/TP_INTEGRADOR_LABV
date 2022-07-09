@@ -74,12 +74,12 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Nombre:</b></label>
-                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" />
+                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
                                     <input type="hidden" name="ID" id="id" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Apellido:</b></label>
-                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido"  />
+                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -188,17 +188,6 @@
 
     });
     
-    $(function() {
-    	if ($('#Mensaje').val()){
-    		Swal.fire({
-    			  text: $('#Mensaje').val(),
-    			  confirmButtonText: 'Aceptar',
-    			  confirmButtonColor: '#3085d6'
-    			})
-    	}
-    	
-    })
-
 </script>
 </body>
 </html>

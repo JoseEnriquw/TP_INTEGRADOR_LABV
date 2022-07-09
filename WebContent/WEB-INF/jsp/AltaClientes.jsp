@@ -26,13 +26,12 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-6">
-								<label><b>Nombre:</b></label> <input type="text"
-									name="txtNombre" placeholder="Ingrese el nombre"
-									class="form-control" />
+								<label><b>Nombre:</b></label> 
+								<input type="text" name="txtNombre" placeholder="Ingrese el nombre" class="form-control" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
 							</div>
 							<div class="col-6">
-								<label><b>Apellido:</b></label> <input type="text" name="txtApellido"
-									placeholder="Ingrese el apellido" class="form-control" />
+								<label><b>Apellido:</b></label> 
+								<input type="text" name="txtApellido" placeholder="Ingrese el apellido" class="form-control" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
 							</div>
 						</div>
 						<div class="row">
@@ -43,7 +42,7 @@
 							</div>
 							<div class="col-6">
 								<label><b>Teléfono:</b></label> <input type="tel" name="txtTelefono"
-									placeholder="Ingrese el teléfono" class="form-control" />
+									placeholder="Ingrese el teléfono" class="form-control" pattern="^(0|[1-9][0-9]*)$"/>
 							</div>
 						</div>
 						<div class="row">
@@ -59,7 +58,7 @@
 						<div class="row">
 							<div class="col-6">
 								<label><b>DNI:</b></label> <br /> <input type="tel" name="txtDni"
-									placeholder="Ingrese el DNI" class="form-control" />
+									placeholder="Ingrese el DNI" class="form-control" pattern="^(0|[1-9][0-9]*)$"/>
 
 							</div>
 							<div class="col-6">

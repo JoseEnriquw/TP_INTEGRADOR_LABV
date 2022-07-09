@@ -68,12 +68,12 @@ public class ClienteController {
 	
 	@RequestMapping("/modificarCliente.html")
 	public ModelAndView editarClientes(String txtNombre,String txtApellido,String txtMail,String txtTelefono,String txtDireccion,String txtLocalidad,
-			String txtDni,String txtFecha, String selectNacionalidad,Integer ID){
+			String txtDni,String txtFecha, Integer selectNacionalidad,Integer ID){
 		ModelAndView MV = new ModelAndView();
 		String Message="";
 	
 		try {
-			service.modificarCliente(new ECliente(ID,txtDni,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail,
+			service.modificarCliente(new ECliente(ID,txtDni,txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail,
 						txtDireccion,txtLocalidad,txtTelefono, Util.convertStringToDate(txtFecha)
 						));
 			
@@ -101,13 +101,13 @@ public class ClienteController {
 	
 	@RequestMapping("/insertClientes.html")
 	public ModelAndView insertClientes(String txtNombre,String txtApellido,String txtMail,String txtTelefono,String txtDireccion,String txtLocalidad,
-			String txtDni,String txtFecha, String selectNacionalidad){
+			String txtDni,String txtFecha, Integer selectNacionalidad){
 		ModelAndView MV = new ModelAndView();
 	String Message="";
 		
 		try{
 		
-			service.altaCliente(new ECliente(txtDni,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail,
+			service.altaCliente(new ECliente(txtDni,txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail,
 					txtDireccion,txtLocalidad,txtTelefono, Util.convertStringToDate(txtFecha)
 					));
 			
@@ -117,7 +117,6 @@ public class ClienteController {
 		catch(Exception e)
 		{
 			Message="No se pudo Ingresar el Cliente";
-			e.printStackTrace();
 		}
 		
 		MV.addObject("Mensaje", Message);
