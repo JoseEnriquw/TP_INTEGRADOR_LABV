@@ -104,6 +104,7 @@ public class LibroController {
 		MV.addObject("Mensaje", Message);
 		MV.addObject("Generos", service.listadoGenero());
 		MV.addObject("Autores", service.listadoAutores());
+		MV.addObject("listaLibros", service.listadoLibros());
 		MV.setViewName("AltaLibros"); 
 		return MV;
 	}

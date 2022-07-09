@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
 <title>Insert title here</title>
 </head>
@@ -62,6 +63,7 @@
                     </table>
                 </div>
             </div>
+            <input type="hidden" id="Mensaje" value="${Mensaje}">
             <div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->
@@ -78,11 +80,11 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Nombre:</b></label>
-                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" />
+                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
                                 </div>
                                 <div class="col-12">
                                     <label><b>Apellido:</b></label>
-                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido"/>
+                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -93,7 +95,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label><b>Teléfono:</b></label>
-                                    <input type="tel" placeholder="Ingrese el teléfono" class="form-control" name="txtTelefono" id="Telefono"/>
+                                    <input type="tel" placeholder="Ingrese el teléfono" class="form-control" name="txtTelefono" id="Telefono" pattern="^(0|[1-9][0-9]*)$"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -110,12 +112,12 @@
                                 <div class="col-12">
                                     <label><b>DNI:</b></label>
                                     <br />
-                                    <input type="tel" placeholder="Ingrese el DNI" class="form-control" name="txtDni" id="Dni"/>
+                                    <input type="tel" placeholder="Ingrese el DNI" class="form-control" name="txtDni" id="Dni" pattern="^(0|[1-9][0-9]*)$"/>
 
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de nacimiento:</b></label>
-                                    <input type="date" class="form-control" name="txtFecha" id="Fecha"/>
+                                    <input type="date" class="form-control" name="txtFecha" id="Fecha" />
 
 
                                 </div>
@@ -124,11 +126,10 @@
                                 <div class="col-12">
                                     <label><b>Nacionalidad:</b></label>
                                     <br />
-                                <select name="selectNacionalidad" class="form-control">
-                                     Seleccione
-									<option value="Argentina">Argentina</option>
-									<option value="Uruguay" selected>Uruguay</option>
-									<option value="Brasil">Brasil</option>
+                                <select name="selectNacionalidad" class="form-control" id="Nacionalidad">
+                                 <c:forEach items="${Nacionalidades}" var="item">
+                                	<option value="${item.getID() }">${item.getDescripcion() }</option>
+                                 </c:forEach>
 								</select>
 
                                 </div>
@@ -139,7 +140,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
                     </div>
@@ -196,7 +197,9 @@
 	    $('#myModal' + modal + ' #Direccion').val(item.direccion);
 	    $('#myModal' + modal + ' #Localidad').val(item.localidad);
 	    $('#myModal' + modal + ' #Dni').val(item.dni);
-	    //$('#myModal' + modal + ' #Fecha').val(item.fechaNacimiento);
+	    $('#myModal' + modal + ' #Nacionalidad').val(item.nacionalidad.id);
+	    var date = new Date(item.fechaNacimiento);
+	    $('#myModal' + modal + ' #Fecha').val(date.toJSON().slice(0,10));
 	}
 	
 	function openModal(modal, id) {

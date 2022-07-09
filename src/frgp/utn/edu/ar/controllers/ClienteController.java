@@ -29,15 +29,13 @@ public class ClienteController {
 		ApplicationContext ctx = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		
-		this.service = (IClienteServicio) ctx.getBean("serviceBean");
+		this.service = (IClienteServicio) ctx.getBean("serviceBeanCliente");
 	}
-	
-	
-	//Inicio
 	
 	@RequestMapping("/Clientes.html")
 	public ModelAndView irClientes(){
 		ModelAndView MV = new ModelAndView();
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.addObject("listaClientes", service.listadoClientes());
 		MV.setViewName("Clientes"); 
 		return MV;
@@ -63,18 +61,19 @@ public class ClienteController {
 			
 			MV.addObject("Mensaje", Message);
 			MV.addObject("listaClientes", service.listadoClientes());
+			MV.addObject("Nacionalidades", service.listadoNacionalidades());
 			MV.setViewName("Clientes"); 
 			return MV;
 	}
 	
 	@RequestMapping("/modificarCliente.html")
 	public ModelAndView editarClientes(String txtNombre,String txtApellido,String txtMail,String txtTelefono,String txtDireccion,String txtLocalidad,
-			String txtDni,String txtFecha, String selectNacionalidad,Integer ID){
+			String txtDni,String txtFecha, Integer selectNacionalidad,Integer ID){
 		ModelAndView MV = new ModelAndView();
 		String Message="";
 	
 		try {
-			service.modificarCliente(new ECliente(ID,txtDni,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail,
+			service.modificarCliente(new ECliente(ID,txtDni,txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail,
 						txtDireccion,txtLocalidad,txtTelefono, Util.convertStringToDate(txtFecha)
 						));
 			
@@ -86,6 +85,7 @@ public class ClienteController {
 		
 		MV.addObject("Mensaje", Message);
 		MV.addObject("listaClientes", service.listadoClientes());
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("Clientes"); 
 		return MV;
 	}
@@ -94,19 +94,20 @@ public class ClienteController {
 	public ModelAndView irAltaClientes(){
 		ModelAndView MV = new ModelAndView();
 		MV.addObject("Mensaje", null);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("AltaClientes"); 
 		return MV;
 	}
 	
 	@RequestMapping("/insertClientes.html")
 	public ModelAndView insertClientes(String txtNombre,String txtApellido,String txtMail,String txtTelefono,String txtDireccion,String txtLocalidad,
-			String txtDni,String txtFecha, String selectNacionalidad){
+			String txtDni,String txtFecha, Integer selectNacionalidad){
 		ModelAndView MV = new ModelAndView();
 	String Message="";
 		
 		try{
 		
-			service.altaCliente(new ECliente(txtDni,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail,
+			service.altaCliente(new ECliente(txtDni,txtNombre,txtApellido,service.getNacionalidad(selectNacionalidad),txtMail,
 					txtDireccion,txtLocalidad,txtTelefono, Util.convertStringToDate(txtFecha)
 					));
 			
@@ -116,10 +117,10 @@ public class ClienteController {
 		catch(Exception e)
 		{
 			Message="No se pudo Ingresar el Cliente";
-			e.printStackTrace();
 		}
 		
 		MV.addObject("Mensaje", Message);
+		MV.addObject("Nacionalidades", service.listadoNacionalidades());
 		MV.setViewName("AltaClientes"); 
 		return MV;
 	}

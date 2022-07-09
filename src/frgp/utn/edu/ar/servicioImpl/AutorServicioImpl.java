@@ -14,7 +14,7 @@ public class AutorServicioImpl implements IAutorServicio{
 
 	private IAutorDao dataAccess = null;
 	private INacionalidadDao dataAccessNacionalidad = null;
-	@Autowired
+	
 	public void setDataAccess(IAutorDao dataAccess) {
 		this.dataAccess = dataAccess;
 	}
@@ -54,7 +54,6 @@ public class AutorServicioImpl implements IAutorServicio{
 	@Override
 	public ArrayList<ENacionalidad> listadoNacionalidades() {
 		return dataAccessNacionalidad.getAll();
-		
 	}
 
 	@Override

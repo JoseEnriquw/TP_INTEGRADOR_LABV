@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -25,13 +26,12 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-6">
-								<label><b>Nombre:</b></label> <input type="text"
-									name="txtNombre" placeholder="Ingrese el nombre"
-									class="form-control" />
+								<label><b>Nombre:</b></label> 
+								<input type="text" name="txtNombre" placeholder="Ingrese el nombre" class="form-control" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
 							</div>
 							<div class="col-6">
-								<label><b>Apellido:</b></label> <input type="text" name="txtApellido"
-									placeholder="Ingrese el apellido" class="form-control" />
+								<label><b>Apellido:</b></label> 
+								<input type="text" name="txtApellido" placeholder="Ingrese el apellido" class="form-control" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
 							</div>
 						</div>
 						<div class="row">
@@ -42,7 +42,7 @@
 							</div>
 							<div class="col-6">
 								<label><b>Teléfono:</b></label> <input type="tel" name="txtTelefono"
-									placeholder="Ingrese el teléfono" class="form-control" />
+									placeholder="Ingrese el teléfono" class="form-control" pattern="^(0|[1-9][0-9]*)$"/>
 							</div>
 						</div>
 						<div class="row">
@@ -58,7 +58,7 @@
 						<div class="row">
 							<div class="col-6">
 								<label><b>DNI:</b></label> <br /> <input type="tel" name="txtDni"
-									placeholder="Ingrese el DNI" class="form-control" />
+									placeholder="Ingrese el DNI" class="form-control" pattern="^(0|[1-9][0-9]*)$"/>
 
 							</div>
 							<div class="col-6">
@@ -70,12 +70,12 @@
 						</div>
 						<div class="row">
 							<div class="col-6">
-								<label><b>Nacionalidad:</b></label> <br /> <select
-									name="selectNacionalidad" class="form-control"> Seleccione
-									<option value="Argentina">Argentina</option>
-									<option value="Uruguay" selected>Uruguay</option>
-									<option value="Brasil">Brasil</option>
-								</select>
+									<label><b>Nacionalidad:</b></label> <br /> 
+							<select name="selectNacionalidad" class="form-control">
+								<c:forEach items="${Nacionalidades}" var="item">
+                                	<option value="${item.getID() }">${item.getDescripcion() }</option>
+                                </c:forEach>
+							</select>
 
 							</div>
 

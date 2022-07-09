@@ -1,16 +1,9 @@
 package frgp.utn.edu.ar.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.Convert;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.exception.spi.ConversionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -18,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import frgp.utn.edu.ar.entidades.EUsuario;
 import frgp.utn.edu.ar.servicio.IUsuarioServicio;
 
@@ -44,8 +35,6 @@ public class UserController {
 		MV.setViewName("Login"); 
 		return MV;
 	}
-	
-	
 	
 	@RequestMapping(value ="validar_usuario.html" , method= { RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView validarUsuario(String nombreU, String passU, HttpServletResponse response){
@@ -91,7 +80,6 @@ public class UserController {
 		MV.setViewName("LogOut"); 
 		return MV;
 	}
-	
 
 	@RequestMapping("/LogOutAceptar.html")
 	public ModelAndView LogOutAceptar(HttpServletResponse response){
@@ -102,15 +90,12 @@ public class UserController {
 		MV.setViewName("Login"); 
 		return MV;
 	}
-		
+
 	@RequestMapping("/AltaUsuario.html")
 	public ModelAndView irAltaUsuarios(){
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("AltaUsuario"); 
 		return MV;
 	}
-	
-	
-	
 	
 }
