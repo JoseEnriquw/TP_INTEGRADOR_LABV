@@ -81,7 +81,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Cant de dias:</b></label>
-                                    <input type="number" placeholder="Ingrese la cantidad de páginas" name="txtDias" class="form-control" id="Dias" />
+                                    <input type="number" placeholder="Ingrese la cantidad de páginas"  name="txtDias" class="form-control" id="Dias" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Cliente:</b></label>
@@ -153,6 +153,7 @@ function openModal(modal, id, idbiblioteca) {
 	    var date = new Date(item.fechaPrestamo);
 	    $('#myModal' + modal + ' #FechaPrestamo').val(date.toJSON().slice(0,10));
 	    $('#myModal' + modal + ' #Dias').val(item.cantDias);
+	    $('#myModal' + modal + ' #Dias').attr("min",item.cantDias);
 	    $('#myModal' + modal + ' #Cliente').val(item.cliente.nombre);
 	}
 	

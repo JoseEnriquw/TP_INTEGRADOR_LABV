@@ -20,5 +20,7 @@ public interface IBibliotecaServicio {
 
 	void bajaBiblioetca(EBiblioteca biblioteca);
 	
+	public ArrayList<EBiblioteca> obtenerBibliotecaByEstado(String estado);
+	
 
 }

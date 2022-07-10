@@ -54,9 +54,9 @@
                         </div>
                        
                     </div>               
-                    <div class="btn-group mt-3 px-2">
-                        <input type="button" class="btn btn-success form" value="Aceptar" />
-                        <input type="button" class="btn btn-danger form" value="Cancelar" />
+                    <div class="mt-3 px-2">
+                        <input type="button" class="btn btn-success form" value="Guardar" />
+                        <input type="button" class="btn btn-danger form" value="Volver" />
                     </div>
                    
                 </div>

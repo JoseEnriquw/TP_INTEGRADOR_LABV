@@ -66,6 +66,11 @@ public class BibliotecaServicioImpl implements IBibliotecaServicio{
 		
 	}
 
+	@Override
+	public ArrayList<EBiblioteca> obtenerBibliotecaByEstado(String estado) {
+		return dataAccess.obtenerBibliotecaByEstado(estado);
+	}
+
 
 
 

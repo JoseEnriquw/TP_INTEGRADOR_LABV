@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <div class="botones">
                         <a href="AltaClientes.html"> <button type="button" class="btn btn-secondary"> Agregar Cliente</button> </a>
-                        <a href="Clientes.html" class="btn btn-secondary">Cargar Grilla</a>
+                        
                     </div>
                     <table id="tabla" class="table table-dark table-striped table-bordered tabla">
                         <thead>

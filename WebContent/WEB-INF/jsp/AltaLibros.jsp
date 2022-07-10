@@ -17,9 +17,7 @@
 
 	<div class="container-fluid" style="margin-top: 20px">
 		<form action="insertLibro.html" method="post">
-		<div class ="boton volver">
-			<a class="btn btn-secondary form" href="Todosloslibros.html" >Volver</a>
-		 </div>
+		
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -79,14 +77,14 @@
 						<div class="col-6">
 						<label><b>Generos:</b></label> </br>
 							<c:forEach items="${Generos}" var="item">
-								 <input type="checkbox" name="chkGenero"  value="${item.getID()}">
+								 <input type="checkbox" name="chkGenero" class="chkGenero"  value="${item.getID()}">
                                  <label for="chkGenero">${item.getDescripcion()}</label><br>
 							</c:forEach> 
 						</div>
 					</div>
-					<div class="btn-group mt-3 px-2">
-						<input type="submit" class="btn btn-success form" value="Aceptar" />
-							<a class="btn btn-danger form" href="Todosloslibros.html" >Cancelar</a>
+					<div class="mt-3 px-2">
+						<input type="submit" class="btn btn-success form" value="Guardar" id="btnAceptar" />
+							<a class="btn btn-danger form" href="Todosloslibros.html" >Volver</a>
 					</div>
 				</div>
 			</div>
@@ -120,6 +118,17 @@
         }
 
     });
+    
+    $('form').submit(function(e){
+    // si la cantidad de checkboxes "chequeados" es cero,
+    // entonces se evita que se envíe el formulario y se
+    // muestra una alerta al usuario
+	    if ($('input[type=checkbox]:checked').length === 0) {
+	        e.preventDefault();
+	        swal.fire('Debe seleccionar por lo menos un género!');
+	    }
+	});
+
 
 </script>
 </body>

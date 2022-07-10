@@ -39,6 +39,28 @@ public class BibliotecaController {
 		return MV;
 	}
 	
+	@RequestMapping("/FiltrarBiblioteca.html")
+	public ModelAndView filtrarBibliotecaEstado(String estado){
+		ModelAndView MV = new ModelAndView();
+		try {
+			if (estado != "") {
+				MV.addObject("listaBibliotecas", service.obtenerBibliotecaByEstado(estado));
+				MV.addObject("EstadoSeleccionado", estado);
+			}
+			else {
+				MV.addObject("listaBibliotecas", service.listadoBiblioteca());
+			}
+			
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		MV.addObject("listaLibros", service.listadoLibro());
+		MV.setViewName("Biblioteca"); 
+		return MV;
+	}
+	
+	
 	@RequestMapping("/AltaBiblioteca.html")
 	public ModelAndView irAltaBiblioteca(){
 		ModelAndView MV = new ModelAndView();

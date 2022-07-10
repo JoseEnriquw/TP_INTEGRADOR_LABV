@@ -9,4 +9,6 @@ public interface IBibliotecaDao extends IGenericDao<EBiblioteca,Integer>{
 	public ArrayList<ELibro> ObtenerListadoBiblioteca();
 	
 	public EBiblioteca obtenerbiblioteca(Integer idlibro);
+	
+	public ArrayList<EBiblioteca> obtenerBibliotecaByEstado(String estado);
 }

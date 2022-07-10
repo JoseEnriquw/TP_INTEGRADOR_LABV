@@ -28,6 +28,11 @@ public class BibliotecaDaoImpl extends GenericDaoImpl<EBiblioteca,Integer> imple
 		
 		return (EBiblioteca) this.hibernateTemplate.find(Util.Q_BIBLIOTECA_BY_IDLIBRO,idlibro).get(0);
 	}
+
+	@Override
+	public ArrayList<EBiblioteca> obtenerBibliotecaByEstado(String estado) {
+		return (ArrayList<EBiblioteca>) this.hibernateTemplate.find(Util.Q_BIBLIOTECA_BY_ESTADO,estado);
+	}
 	
 	
 

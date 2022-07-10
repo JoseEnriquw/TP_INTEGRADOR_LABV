@@ -18,9 +18,6 @@
 
 	<div class="container-fluid" style="margin-top: 20px">
 	<form action="insertPrestamos.html" method="post">
-	<div class ="boton volver">
-			<a class="btn btn-secondary form" href="Prestamos.html" >Volver</a>
-		 </div>
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -50,9 +47,9 @@
 						</div>
 					</div>
 
-					<div class="btn-group mt-3 px-2">
-						<input type="submit" class="btn btn-success form" value="Aceptar" />
-						<a class="btn btn-danger form" href="Prestamos.html" >Cancelar</a>
+					<div class="mt-3 px-2">
+						<input type="submit" class="btn btn-success form" value="Guardar" />
+						<a class="btn btn-danger form" href="Prestamos.html" >Volver</a>
 					</div>
 				</div>
 				 <h3>${Mensaje}</h3>

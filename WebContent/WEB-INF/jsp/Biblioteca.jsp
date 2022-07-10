@@ -23,12 +23,18 @@
                 <div class="botones">
 					<a href="AltaBiblioteca.html"> <button type="button" class="btn btn-secondary">Agregar libro a la biblioteca</button></a>
 				</div>
+				<div class="row">
                     <div class="col-3">
                         <label><b>Filtrar por estado : </b></label>
-                        <select class="form-control">
-                            <option>En Biblioteca </option>
+                        <select class="form-control" id="selectEstado" selected="En biblioteca">
+                        	
+                        	<option value="">Todos</option>
+                            <option value="En biblioteca">En biblioteca </option>
+                            <option value="Prestado">Prestado </option>
                          </select>
+                         <input type="hidden" id="hfEstado" value="${EstadoSeleccionado}"/>
                     </div>
+                </div>
                 </div>
                 <br>
                 <table id="tabla" class="table table-dark table-striped tabla table-bordered">
@@ -129,6 +135,17 @@
             }
 
         });
+        
+        $("#selectEstado").on('change', function(){
+        	//alert($("#selectEstado").val())
+        	window.location = "http://localhost:9090/TP_INTEGRADOR_GRUPO_9/FiltrarBiblioteca.html?estado=" + $("#selectEstado").val();
+        })
+        
+        $(function (){
+        	if ($('#hfEstado').val()){
+        		$('#selectEstado').val($('#hfEstado').val())
+        	}
+        })
 
     </script>
 </body>
