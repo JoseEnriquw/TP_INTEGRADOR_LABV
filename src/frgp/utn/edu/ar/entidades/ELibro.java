@@ -70,6 +70,19 @@ public class ELibro implements Serializable{
 		this.generos = generos;
 	}
 
+	public ELibro(int isbn, String titulo, Date fechaLanzamiento, String idioma, Integer cantPaginas, EAutor autor,
+			String descripcion, List<EGenero> generos) {
+		super();
+		this.isbn = isbn;
+		this.titulo = titulo;
+		this.fechaLanzamiento = fechaLanzamiento;
+		this.idioma = idioma;
+		this.cantPaginas = cantPaginas;
+		this.autor = autor;
+		this.descripcion = descripcion;
+		this.generos = generos;
+	}
+
 	public int getId() {
 		return isbn;
 	}

@@ -62,9 +62,10 @@ public class PrestamoController {
 	
 		
 		try{
-			ECliente Cliente = service.ExisteCliente(txtDNI);
 			
-			if(Cliente!= null) {
+			
+			if(service.ExisteCliente(txtDNI)!= null) {
+				ECliente Cliente = service.ExisteCliente(txtDNI);
 				EBiblioteca Biblioteca = service.ObtenerBiblioteca(selectLibro);
 				service.altaPrestamo(new EPrestamo(Biblioteca ,Util.convertStringToDate(txtFecha), txtDias,Cliente));
 				
@@ -89,6 +90,7 @@ public class PrestamoController {
 		}
 		
 		MV.addObject("Mensaje", Message);
+		MV.addObject("listaLibrosbiblioteca", service.listadolibrosselect());
 		MV.setViewName("AltaPrestamos"); 
 		return MV;
 	}

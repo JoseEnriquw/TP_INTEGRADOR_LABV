@@ -18,6 +18,10 @@
 
        
 		<form action="insertClientes.html" method="post">
+		
+		<div class ="boton volver">
+			<a class="btn btn-secondary form" href="Clientes.html" >Volver</a>
+		 </div>
 			<div class="divFormulario">
 				<div class="card">
 					<div class="card-header">
@@ -27,43 +31,43 @@
 						<div class="row">
 							<div class="col-6">
 								<label><b>Nombre:</b></label> 
-								<input type="text" name="txtNombre" placeholder="Ingrese el nombre" class="form-control" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
+								<input type="text" name="txtNombre" placeholder="Ingrese el nombre" class="form-control" pattern="[a-zA-Z ]{2,254}" required/>
 							</div>
 							<div class="col-6">
 								<label><b>Apellido:</b></label> 
-								<input type="text" name="txtApellido" placeholder="Ingrese el apellido" class="form-control" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
+								<input type="text" name="txtApellido" placeholder="Ingrese el apellido" class="form-control" pattern="[a-zA-Z ]{2,254}" required/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6">
 								<label><b>Correo electrónico:</b></label> <input type="email" name="txtMail"
 									placeholder="Ingrese el correo electrónico"
-									class="form-control" />
+									class="form-control" required/>
 							</div>
 							<div class="col-6">
 								<label><b>Teléfono:</b></label> <input type="tel" name="txtTelefono"
-									placeholder="Ingrese el teléfono" class="form-control" pattern="^(0|[1-9][0-9]*)$"/>
+									placeholder="Ingrese el teléfono" class="form-control" pattern="^(0|[1-9][0-9]*)$" required/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6">
 								<label><b>Dirección:</b></label> <input type="text" name="txtDireccion"
-									placeholder="Ingrese la direccion" class="form-control" />
+									placeholder="Ingrese la direccion" class="form-control" required />
 							</div>
 							<div class="col-6">
 								<label><b>Localidad:</b></label> <input type="text" name="txtLocalidad"
-									placeholder="Ingrese la localidad" class="form-control" />
+									placeholder="Ingrese la localidad" class="form-control"  required />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6">
 								<label><b>DNI:</b></label> <br /> <input type="tel" name="txtDni"
-									placeholder="Ingrese el DNI" class="form-control" pattern="^(0|[1-9][0-9]*)$"/>
+									placeholder="Ingrese el DNI" class="form-control" pattern="^(0|[1-9][0-9]*)$" required/>
 
 							</div>
 							<div class="col-6">
 								<label><b>Fecha de nacimiento:</b></label> <input type="date" name="txtFecha"
-									class="form-control" />
+									class="form-control" required/>
 
 
 							</div>
@@ -71,7 +75,7 @@
 						<div class="row">
 							<div class="col-6">
 									<label><b>Nacionalidad:</b></label> <br /> 
-							<select name="selectNacionalidad" class="form-control">
+							<select name="selectNacionalidad" class="form-control" required>
 								<c:forEach items="${Nacionalidades}" var="item">
                                 	<option value="${item.getID() }">${item.getDescripcion() }</option>
                                 </c:forEach>

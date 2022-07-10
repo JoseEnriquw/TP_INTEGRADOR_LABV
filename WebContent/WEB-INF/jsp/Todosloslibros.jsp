@@ -65,6 +65,7 @@
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->
                 <div class="modal-content">
+                <form action="modificarLibros.html" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Editar Libro</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -76,38 +77,43 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Título:</b></label>
-                                    <input type="text" placeholder="Ingrese el titulo" class="form-control" id="titulo" />
+                                    <input type="text" placeholder="Ingrese el titulo" name="txtTitulo" class="form-control" id="titulo" pattern="[a-zA-Z ]{2,254}" required/>
+                                    <input type="hidden" name="ID" id="id" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de lanzamiento:</b></label>
-                                    <input type="date" class="form-control" id="fechaLanzamiento" />
+                                    <input type="date" class="form-control" name="txtFecha" id="fechaLanzamiento" pattern="[a-zA-Z ]{2,254}" required/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Idioma:</b></label>
-                                    <input type="text" placeholder="Ingrese el idioma" class="form-control" id="idioma" />
+                                    <input type="text" name="txtIdioma" placeholder="Ingrese el idioma" class="form-control" id="idioma" pattern="[a-zA-Z ]{2,254}" required />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Cant. de páginas:</b></label>
-                                    <input type="number" placeholder="Ingrese la cantidad de páginas" class="form-control" id="cantPaginas" />
+                                    <input type="number" min="1" name ="txtCant" placeholder="Ingrese la cantidad de páginas" class="form-control" id="cantPaginas" pattern="[a-zA-Z ]{2,254}" required/>
 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Autor:</b></label>
-                                    <input type="text" placeholder="Ingrese el autor" class="form-control" id="autor"/>
+                                  <select name="selectAutores" class="form-control" required>
+								<c:forEach items="${Autores}" var="item">
+                                	<option value="${item.getId() }">${item.getNombre() } ${item.getApellido() }</option>
+                                </c:forEach>
+							</select>
                                 </div>
                                 <div class="col-12">
                                     <label><b>Descripción:</b></label>
-                                    <input type="text" placeholder="Ingrese la cantidad de páginas" class="form-control" id="descripcion" />
+                                    <input type="text" name="txtDesc" placeholder="Ingrese la cantidad de páginas" class="form-control" id="descripcion" pattern="[a-zA-Z ]{2,254}" required/>
 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                <label><b>Géneros:</b></label>
+                                <label><b>Géneros:</b></label> </br>
 									<c:forEach items="${Generos}" var="item">
 								 		<input type="checkbox" name="chkGenero" value="${item.getID()}" id="${item.getDescripcion()}">
                                  		<label for="chkGenero">${item.getDescripcion()}</label><br>
@@ -119,10 +125,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Aceptar</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-
                     </div>
+                       </form>
                 </div>
 
             </div>
@@ -165,10 +171,11 @@
 	function openModalEditar(modal, Jsonitem) {
 	    $('#myModal' + modal).modal('show');
 	    var item = Jsonitem;
-	    $('#myModal' + modal + ' #id').val(item.id);
+	    $('#myModal' + modal + ' #id').val(item.isbn);
 	    $('#myModal' + modal + ' #titulo').val(item.titulo);
 	    $('#myModal' + modal + ' #cantPaginas').val(item.cantPaginas);
 	    $('#myModal' + modal + ' #idioma').val(item.idioma);
+	    $('#myModal' + modal + ' #descripcion').val(item.descripcion);	   
 	    $('#myModal' + modal + ' #fechaLanzamiento').val(new Date(item.fechaLanzamiento).toISOString().split('T')[0]);
 	    for (const genero of item.generos){
 	    	document.getElementById(genero.descripcion).checked = true;

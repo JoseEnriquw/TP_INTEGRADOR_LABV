@@ -54,11 +54,11 @@ public class BibliotecaServicioImpl implements IBibliotecaServicio{
 		return dataAccessLibro.get(id);
 	}
 
-/*	@Override
-	public void bajaLibro(ELibro Libro) {
-		dataAccess.delete(Libro);
+	@Override
+	public void bajaBiblioetca(EBiblioteca biblioteca) {
+		dataAccess.delete(biblioteca);
 		
-	}*/
+	}
 	
 	@Override
 	public void modificarBiblioteca(EBiblioteca biblioteca) {

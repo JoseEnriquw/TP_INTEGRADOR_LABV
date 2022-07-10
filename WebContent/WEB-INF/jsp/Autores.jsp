@@ -74,24 +74,24 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Nombre:</b></label>
-                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
+                                    <input type="text" placeholder="Ingrese el nombre" class="form-control" name="txtNombre" id="Nombre" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$" required/>
                                     <input type="hidden" name="ID" id="id" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Apellido:</b></label>
-                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$"/>
+                                    <input type="text" placeholder="Ingrese el apellido" class="form-control" name="txtApellido" id="Apellido" pattern="^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+(?: [A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$" required/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Correo electrónico:</b></label>
                                     <input type="text" placeholder="Ingrese el correo electrónico" name="txtMail" id="Mail" pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
-                                           class="form-control" />
+                                           class="form-control" required/>
                                 </div>
                                 <div class="col-12">
                                     <label><b>Nacionalidad:</b></label>
                                     <br />
-                                    <select name="selectNacionalidad" class="form-control">
+                                    <select name="selectNacionalidad" class="form-control" required>
                                         <c:forEach items="${Nacionalidades}" var="item">
                                         	<option value="${item.getID() }">${item.getDescripcion() }</option>
                                         </c:forEach>

@@ -12,13 +12,13 @@ public interface IBibliotecaServicio {
 	
 	public ArrayList<ELibro> listadoLibro();
 	
-/*	public void bajaBiblioteca(EBiblioteca Biblioteca);*/
-	
-	public EBiblioteca obtenerBiblioteca(Integer id);
+    public EBiblioteca obtenerBiblioteca(Integer id);
 	
 	public ELibro obtenerLibro(Integer id);
 
 	void modificarBiblioteca(EBiblioteca biblioteca);
+
+	void bajaBiblioetca(EBiblioteca biblioteca);
 	
 
 }

@@ -110,13 +110,17 @@ public class LibroController {
 	}
 	
 	@RequestMapping("/modificarLibros.html")
-	public ModelAndView modificarLibros(String txtNombre,String txtApellido,String txtMail,String selectNacionalidad, Integer ID){
+	public ModelAndView modificarLibros(Integer ID,String txtTitulo,String txtFecha,String txtIdioma,Integer txtCant,Integer selectAutores,String txtDesc, Integer[] chkGenero){
 		ModelAndView MV = new ModelAndView();
 		String Message="";
 		
 		try{
-		
-			//service.modificarLibro(new ELibro(ID,txtNombre,txtApellido,new ENacionalidad(selectNacionalidad),txtMail));
+			ArrayList<EGenero> listaGeneros = new ArrayList<EGenero>();
+			for (Integer idGenero : chkGenero ) {
+				listaGeneros.add(service.getGenero(idGenero));
+			}
+			
+			service.modificarLibro(new ELibro(ID,txtTitulo, Util.convertStringToDate(txtFecha) ,txtIdioma,txtCant,service.getAutor(selectAutores),txtDesc,listaGeneros));
 			
             Message="¡Libro modificado con éxito!";
 		
@@ -131,7 +135,7 @@ public class LibroController {
 		MV.addObject("listaLibros", service.listadoLibros());
 		MV.addObject("Generos", service.listadoGenero());
 		MV.addObject("Autores", service.listadoAutores());
-		MV.setViewName("Libros"); 
+		MV.setViewName("Todosloslibros"); 
 		return MV;
 	}
 }

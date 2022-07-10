@@ -27,8 +27,7 @@
                         <label><b>Filtrar por estado : </b></label>
                         <select class="form-control">
                             <option>En Biblioteca </option>
-                            <option>Prestado </option>
-                        </select>
+                         </select>
                     </div>
                 </div>
                 <br>
@@ -52,8 +51,7 @@
                                 	<td>${item.getEstado()}</td>
                                 	
                                 	<td>
-                                    	<button class="btn btn-success" type="button" onclick='openModalEditar("Editar",${item.ConvertToJson()});'><i class="fas fa-edit"></i></button>
-                                		<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id});"><i class="fas fa-times"></i></button>
+                                    	<button class="btn btn-danger" type="button" onclick="openModal('Eliminar', ${item.id});"><i class="fas fa-times"></i></button>
                                 	</td>
                                 	
                             	</tr>
@@ -64,6 +62,38 @@
                     </tbody>
                 </table>
             </div>
+            
+            
+            
+             <div class="modal fade" id="myModalEliminar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar Cliente</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <label>¿Desea eleminar este Libro de Biblioteca?</label>
+
+
+                        </div>
+                    </div>
+                    <form action="bajaBiblioteca.html" method="post">
+	                    <div class="modal-footer">
+	                       <input type="hidden" id="id" name="ID" />
+	                       <button type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa fa-check"></i>Aceptar</button>
+	                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+	
+	                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
         </div>
 
         
@@ -72,6 +102,11 @@
 
 
     <script>
+    function openModal(modal, id) {
+	    $('#myModal' + modal).modal('show');
+	    $('#myModal' + modal + ' #id').val(id);
+	}
+    
         $('#tabla').DataTable({
 
             "language": {

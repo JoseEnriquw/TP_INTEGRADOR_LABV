@@ -17,6 +17,9 @@
 
 	<div class="container-fluid" style="margin-top: 20px">
 		<form action="insertAutores.html" method="post">
+		<div class ="boton volver">
+			<a class="btn btn-secondary form" href="Autores.html" >Volver</a>
+		 </div>
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -26,21 +29,21 @@
 					<div class="row">
 						<div class="col-6">
 							<label><b>Nombre:</b></label> <input type="text" name="txtNombre" id="nombre" pattern="^[A-Za-z]+$"
-								placeholder="Ingrese el nombre" class="form-control" />
+								placeholder="Ingrese el nombre" class="form-control" required />
 						</div>
 						<div class="col-6">
 							<label><b>Apellido:</b></label> <input type="text" name="txtApellido" id="apellido" pattern="^[A-Za-z]+$"
-								placeholder="Ingrese el apellido" class="form-control" />
+								placeholder="Ingrese el apellido" class="form-control" required />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
 							<label><b>Correo electrónico:</b></label> <input type="email" name="txtMail" id="mail" 
-								placeholder="Ingrese el correo electrónico" class="form-control" />
+								placeholder="Ingrese el correo electrónico" class="form-control" required />
 						</div>
 						<div class="col-6">
 							<label><b>Nacionalidad:</b></label> <br /> 
-							<select name="selectNacionalidad" class="form-control">
+							<select name="selectNacionalidad" class="form-control" required>
 								<c:forEach items="${Nacionalidades}" var="item">
                                 	<option value="${item.getID() }">${item.getDescripcion() }</option>
                                 </c:forEach>

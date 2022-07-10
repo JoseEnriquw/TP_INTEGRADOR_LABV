@@ -17,6 +17,9 @@
 
 	<div class="container-fluid" style="margin-top: 20px">
 		<form action="insertLibro.html" method="post">
+		<div class ="boton volver">
+			<a class="btn btn-secondary form" href="Todosloslibros.html" >Volver</a>
+		 </div>
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -26,22 +29,22 @@
 					<div class="row">
 						<div class="col-6">
 							<label><b>Título:</b></label> <input type="text" name="txtTitulo"
-								placeholder="Ingrese el título" class="form-control" />
+								placeholder="Ingrese el título" class="form-control" required />
 						</div>
 						<div class="col-6">
 							<label><b>Idioma:</b></label> <input type="text" name="txtIdioma"
-								placeholder="Ingrese el idioma" class="form-control" />
+								placeholder="Ingrese el idioma" class="form-control" pattern="[a-zA-Z ]{2,254}" required />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Cantidad de páginas:</b></label> <input type="number" name="txtCant"
+							<label><b>Cantidad de páginas:</b></label> <input type="number" name="txtCant" min="1"
 								placeholder="Ingrese la cantidad de páginas"
-								class="form-control" />
+								class="form-control" required />
 						</div>
 						<div class="col-6">
 							<label><b>Autor:</b></label> 
-							<select name="selectAutores" class="form-control">
+							<select name="selectAutores" class="form-control" required>
 								<c:forEach items="${Autores}" var="item">
                                 	<option value="${item.getId() }">${item.getNombre() } ${item.getApellido() }</option>
                                 </c:forEach>
@@ -50,25 +53,33 @@
 					</div>
 					
 					<div class="row">
+						
 						<div class="col-6">
-							<label><b>ISBN: </b></label> <input type="text" name="txtIsbn"
-								placeholder="Ingrese ISBN" class="form-control" />
-
+							<label><b>Fecha de lanzamiento:</b></label> <input type="date" name="txtFecha" class="form-control" required/>
+							
 						</div>
-						<div class="col-6">
-							<label><b>Fecha de lanzamiento:</b></label> <input type="date" name="txtFecha" class="form-control" />
-
+					</div>
+					
+					<div class="row">
+						
+						<div class="col-12">							
+							<label><b>Descripción:</b></label> <input type="textarea" name="txtDesc"
+								placeholder="Ingrese la descripción" class="form-control" required/>
+						
 
 						</div>
 					</div>
+					
+					
+					
+					
+					
 					<div class="row">
+						
 						<div class="col-6">
-							<label><b>Descripción:</b></label> <input type="text" name="txtDesc"
-								placeholder="Ingrese la descripción" class="form-control" />
-						</div>
-						<div class="col-6">
+						<label><b>Generos:</b></label> </br>
 							<c:forEach items="${Generos}" var="item">
-								 <input type="checkbox" name="chkGenero" value="${item.getID()}">
+								 <input type="checkbox" name="chkGenero"  value="${item.getID()}">
                                  <label for="chkGenero">${item.getDescripcion()}</label><br>
 							</c:forEach> 
 						</div>

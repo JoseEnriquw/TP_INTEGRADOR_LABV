@@ -14,6 +14,9 @@
 
 	<div class="container-fluid" style="margin-top: 20px">
 		<form action="insertBiblioteca.html" method="post">
+		<div class ="boton volver">
+			<a class="btn btn-secondary form" href="Biblioteca.html" >Volver</a>
+		 </div>
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -31,7 +34,7 @@
 						</div>
 						
 						<div class="col-6">
-							<label><b>Fecha de alta:</b></label> <input type="date" name="txtFecha" class="form-control" />
+							<label><b>Fecha de alta:</b></label> <input type="date" name="txtFecha" class="form-control" required/>
 
 
 						</div>
@@ -41,8 +44,7 @@
 							<label><b>Estado:</b></label> 
 							<select name="selectEstado" class="form-control">
                                 	<option value="En biblioteca">En biblioteca</option>
-                                	<option value="Prestado">Prestado</option>
-							</select>
+                            </select>
 						</div>
 		
 					<div class="btn-group mt-3 px-2">

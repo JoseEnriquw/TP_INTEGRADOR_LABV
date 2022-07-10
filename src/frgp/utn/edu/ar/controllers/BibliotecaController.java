@@ -50,33 +50,32 @@ public class BibliotecaController {
 		return MV;
 	}
 	
-/*	@RequestMapping("/bajaBiblioteca.html")
-	public ModelAndView deleteLibros(Integer ID){
+	@RequestMapping("/bajaBiblioteca.html")
+	public ModelAndView deleteLibroBiblioetca(Integer ID){
 		
 		ModelAndView MV = new ModelAndView();
 		String Message="";
 			
 			try{
-				ELibro libro = new ELibro();
-				libro.setId(ID);
-				service.bajaLibro(libro);
+				EBiblioteca biblioteca = service.obtenerBiblioteca(ID);
 				
-	            Message="¡Libro eliminado con éxito!";
+				service.bajaBiblioetca(biblioteca);
+				
+	            Message="¡Biblioetca eliminado con éxito!";
 			
 			}
 			catch(Exception e)
 			{
-				Message="No se pudo eliminar el libro";
+				Message="No se pudo eliminar el Biblioetca";
 				e.printStackTrace();
 			}
 			
-			MV.addObject("Mensaje", Message);
-			MV.addObject("listaLibros", service.listadoLibros());
-			MV.addObject("Generos", service.listadoGenero());
-			MV.addObject("Autores", service.listadoAutores());
-			MV.setViewName("Libros"); 
+			MV.addObject("Mensaje", Message);	
+			MV.addObject("listaLibros", service.listadoLibro());
+			MV.addObject("listaBibliotecas", service.listadoBiblioteca());
+			MV.setViewName("Biblioteca"); 
 			return MV;
-	}*/
+	}
 	
 	@RequestMapping("/insertBiblioteca.html")
 	public ModelAndView insertBiblioteca(Integer selectLibro, String txtFecha, String selectEstado){

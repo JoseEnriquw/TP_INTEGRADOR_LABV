@@ -18,6 +18,9 @@
 
 	<div class="container-fluid" style="margin-top: 20px">
 	<form action="insertPrestamos.html" method="post">
+	<div class ="boton volver">
+			<a class="btn btn-secondary form" href="Prestamos.html" >Volver</a>
+		 </div>
 		<div class="divFormulario">
 			<div class="card">
 				<div class="card-header">
@@ -26,23 +29,23 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-6">
-							<label><b>Libro : </b></label> <select class="form-control" name="selectLibro">
+							<label><b>Libro : </b></label> <select class="form-control" name="selectLibro" required>
 								<c:forEach items="${listaLibrosbiblioteca}" var="item">
                                 	<option value="${item.getId() }">${item.getTitulo() }</option>
                                 </c:forEach>
 							</select>
 						</div>
 						<div class="col-6">
-							<label><b>Fecha:</b></label> <input type="date" name= "txtFecha" class="form-control" />
+							<label><b>Fecha:</b></label> <input type="date" name= "txtFecha" class="form-control" required />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-6">
-							<label><b>Cantidad de dias: </b></label> <input type="number" name="txtDias" min="1" class="form-control" />
+							<label><b>Cantidad de dias: </b></label> <input type="number" name="txtDias" min="1" class="form-control" required />
 							<div class="invalid-feedback">Nombre requerido</div>
 						</div>
 						<div class="col-6">
-							<label><b>Cliente:</b></label> <input type="text" name="txtDNI"	placeholder="Ingrese el DNI" class="form-control" />
+							<label><b>Cliente:</b></label> <input type="text" name="txtDNI"	placeholder="Ingrese el DNI" class="form-control" pattern="^(0|[1-9][0-9]*)$"  required  />
 							<div class="invalid-feedback">Nombre requerido</div>
 						</div>
 					</div>

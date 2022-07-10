@@ -70,12 +70,12 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Biblioteca:</b></label>
-                                    <input type="text" placeholder="Ingrese la biblioteca" class="form-control" id="Titulo" />
+                                    <input type="text" placeholder="Ingrese la biblioteca" class="form-control" id="Titulo" readonly />
                                      <input type="hidden" name="ID" id="id" />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Fecha de préstamo:</b></label>
-                                    <input type="date" class="form-control" id="FechaPrestamo"/>
+                                    <input type="date" class="form-control" id="FechaPrestamo" readonly/>
                                 </div>
                             </div>
                             <div class="row">
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label><b>Cliente:</b></label>
-                                    <input type="text" placeholder="Ingrese el cliente" class="form-control" id="Cliente"/>
+                                    <input type="text" placeholder="Ingrese el cliente" class="form-control" id="Cliente" readonly/>
                                 </div>
                             </div>
 
