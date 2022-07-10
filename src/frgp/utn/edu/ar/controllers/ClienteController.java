@@ -50,12 +50,12 @@ public class ClienteController {
 			try{
 				service.bajaCliente(ID);
 				
-	            Message="ï¿½Cliente eliminado con ï¿½xito!";
+	            Message="¡Cliente eliminado con éxito!";
 			
 			}
 			catch(Exception e)
 			{
-				Message="No se pudo eliminar el autor";
+				Message="No se pudo eliminar el cliente";
 				e.printStackTrace();
 			}
 			
@@ -77,8 +77,8 @@ public class ClienteController {
 						txtDireccion,txtLocalidad,txtTelefono, Util.convertStringToDate(txtFecha)
 						));
 			
-		Message="ï¿½Cliente modificado con ï¿½xito!";
-		} catch (ParseException e) {
+		Message="!Cliente modificado con éxito!";
+		} catch (Exception e) {
 			Message="No se pudo modificar el Cliente";	
 			e.printStackTrace();
 		}
@@ -116,7 +116,15 @@ public class ClienteController {
 		}
 		catch(Exception e)
 		{
-			Message="No se pudo Ingresar el Cliente";
+			if ("org.springframework.dao.DataIntegrityViolationException" == e.getClass().getName()) {
+				String key =e.getCause().getCause().toString().split("'")[3].toString(); 
+				if ( key.equals("cliente.UK_jlcg5nhnauli1hu4ojldsedaw")) {
+					Message="El DNI n° " + e.getCause().getCause().toString().split("'")[1].toString() + " ya se encuentra registrado!"; 
+				}
+				else {
+					Message="Esta correo (" + e.getCause().getCause().toString().split("'")[1].toString() + ") ya se encuentra registrado!";
+				}
+			}
 		}
 		
 		MV.addObject("Mensaje", Message);

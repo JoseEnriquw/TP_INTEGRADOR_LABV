@@ -57,7 +57,7 @@
            
         </div>
     </nav>
-   
+   <input type="hidden" id="Mensaje" value="${Mensaje}">
    <script>
    		$(function checkCookies(){
    			var cookies = document.cookie.split(";");

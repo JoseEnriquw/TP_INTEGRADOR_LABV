@@ -57,7 +57,7 @@
                 </table>
             </div>
         </div>
-        <input type="hidden" id="Mensaje" value="${Mensaje}">
+        
         <div class="modal fade" id="myModalEditar" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <!-- Modal content-->

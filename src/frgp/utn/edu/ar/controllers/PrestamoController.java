@@ -111,12 +111,12 @@ public class PrestamoController {
 				service.EditarBiblioteca(Biblioteca);
 				service.bajaPrestamo(prestamos);
 				
-	            Message="¡Autor eliminado con éxito!";
+	            Message="¡Préstamo eliminado con éxito!";
 			
 			}
 			catch(Exception e)
 			{
-				Message="No se pudo eliminar el autor";
+				Message="No se pudo eliminar el préstamo";
 				e.printStackTrace();
 			}
 			
@@ -151,7 +151,7 @@ public class PrestamoController {
 		}
 		catch(Exception e)
 		{
-			Message="No se pudo modificar el Autor";
+			Message="No se pudo modificar el préstamo";
 			e.printStackTrace();
 		}
 		

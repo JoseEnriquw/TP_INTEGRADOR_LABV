@@ -33,7 +33,7 @@ public class EPrestamo {
 	private Integer cantDias;
 	
 	@ManyToOne (cascade= {CascadeType. ALL})
-	@JoinColumn
+	@JoinColumn(name="cliente_id")
 	private ECliente cliente;
 
 	public EPrestamo() {

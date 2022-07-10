@@ -40,7 +40,7 @@ public class EBiblioteca implements Serializable{
 	private String estado;
 	
 	@ManyToOne(cascade= {CascadeType. ALL})
-	@JoinColumn(name="id_libro")
+	@JoinColumn(name="isbn")
 	private ELibro libro ;
 
 	public EBiblioteca() {
