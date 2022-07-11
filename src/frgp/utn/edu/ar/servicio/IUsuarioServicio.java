@@ -6,14 +6,18 @@ import frgp.utn.edu.ar.entidades.EUsuario;
 
 public interface IUsuarioServicio {
 
-	ArrayList<EUsuario> obtenerUsuarios();
+	public ArrayList<EUsuario> listadoUsuarios();
 
 	EUsuario obtenerUnRegistro(String nombreUser);
 
-	void insertarUsuario(EUsuario usuario);
+	public void altaUsuario(EUsuario usuario);
 
-    void eliminarUsuario(Integer idUser) ;
+    public void bajaUsuario(Integer idUser) ;
 
-	void actualizarUsuario(EUsuario usuario);
+	public void actualizarUsuario(EUsuario usuario);
+	
+	public void modificarUsuario(EUsuario usuario);
+	
+	
 	
 }

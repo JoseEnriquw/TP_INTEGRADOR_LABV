@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import frgp.utn.edu.ar.dao.IUsuarioDao;
+import frgp.utn.edu.ar.entidades.ECliente;
 import frgp.utn.edu.ar.entidades.EUsuario;
 import frgp.utn.edu.ar.servicio.IUsuarioServicio;
 
@@ -17,7 +18,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio{
 	}
 	
 	@Override
-	public ArrayList<EUsuario> obtenerUsuarios() {
+	public ArrayList<EUsuario> listadoUsuarios() {
 		return dataAccess.getAll();
 	}
 
@@ -27,12 +28,12 @@ public class UsuarioServicioImpl implements IUsuarioServicio{
 	}
 
 	@Override
-	public void insertarUsuario(EUsuario usuario) {
+	public void altaUsuario(EUsuario usuario) {
 		 dataAccess.insert(usuario);
 	}
 
 	@Override
-	public void eliminarUsuario(Integer idUser) {
+	public void bajaUsuario(Integer idUser) {
 		dataAccess.delete(new EUsuario(idUser));
 	}
 
@@ -40,5 +41,11 @@ public class UsuarioServicioImpl implements IUsuarioServicio{
 	public void actualizarUsuario(EUsuario usuario) {
 		dataAccess.update(usuario);
 	}
+	
+	@Override
+	public void modificarUsuario(EUsuario usuario) {
+		dataAccess.update(usuario);
+	}
+	
 
 }

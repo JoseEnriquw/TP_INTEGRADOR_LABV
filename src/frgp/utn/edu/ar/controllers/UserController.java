@@ -3,7 +3,6 @@ package frgp.utn.edu.ar.controllers;
 import javax.servlet.ServletConfig;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 import frgp.utn.edu.ar.entidades.EUsuario;
 import frgp.utn.edu.ar.servicio.IUsuarioServicio;
+import frgp.utn.edu.ar.utiles.Util;
 
 @Controller
 public class UserController {
@@ -49,7 +49,7 @@ public class UserController {
 			{
 				Message=" El usuario "+nombreU+" no existe";
 			}
-			else if(user.getNombreU().equals(nombreU)) 
+			else if(user.getNombreU().equals(nombreU) && user.getPassU().equals(passU)) 
 			{
 				MV.addObject("Usuario", nombreU);
 				Cookie userCookie = new Cookie("userCookieAlejandria", nombreU);
@@ -59,7 +59,7 @@ public class UserController {
 				return MV;
 			}
 			else {
-				Message=" ContraseÃ±a incorrecta";
+				Message=" Contraseña incorrecta";
 			}
 		
 		}
@@ -90,11 +90,86 @@ public class UserController {
 		MV.setViewName("Login"); 
 		return MV;
 	}
+	
+	@RequestMapping("/Usuarios.html")
+	public ModelAndView irClientes(){
+		ModelAndView MV = new ModelAndView();
+		MV.addObject("listaUsuarios", service.listadoUsuarios());
+		MV.setViewName("Usuarios"); 
+		return MV;
+	}
 
 	@RequestMapping("/AltaUsuario.html")
 	public ModelAndView irAltaUsuarios(){
 		ModelAndView MV = new ModelAndView();
-		MV.setViewName("AltaUsuario"); 
+		MV.setViewName("AltaUsuarios"); 
+		return MV;
+	}
+	
+	@RequestMapping("/bajaUsuario.html")
+    public ModelAndView deleteUsuarios(Integer ID){
+		
+		ModelAndView MV = new ModelAndView();
+		String Message="";
+			
+			try{
+				service.bajaUsuario(ID);
+				
+	            Message="¡Usuario eliminado con éxito!";
+			
+			}
+			catch(Exception e)
+			{
+				Message="No se pudo eliminar el Usuario";
+				e.printStackTrace();
+			}
+			
+			MV.addObject("Mensaje", Message);
+			MV.addObject("listaUsuarios", service.listadoUsuarios());
+			MV.setViewName("Usuarios"); 
+			return MV;
+	}
+	
+	@RequestMapping("/modificarUsuario.html")
+	public ModelAndView editarUsuarios(Integer ID, String txtNombre, String txtPass){
+		ModelAndView MV = new ModelAndView();
+		String Message="";
+	
+		try {
+			service.modificarUsuario(new EUsuario(ID,txtNombre, txtPass));
+			
+		Message="!Usuario modificado con éxito!";
+		} catch (Exception e) {
+			Message="No se pudo modificar el Usuario";	
+			e.printStackTrace();
+		}
+		
+		MV.addObject("Mensaje", Message);
+		MV.addObject("listaUsuarios", service.listadoUsuarios());
+		MV.setViewName("Usuarios"); 
+		return MV;
+	}
+	
+	@RequestMapping("/insertUsuarios.html")
+	public ModelAndView insertUsuarios(String txtNombre,String txtPass){
+		ModelAndView MV = new ModelAndView();
+	String Message="";
+		
+		try{
+		
+			service.altaUsuario(new EUsuario(txtNombre,txtPass));
+			
+            Message="Usuario Ingresado con Exito!!";
+		
+		}
+		catch(Exception e)
+		{
+			Message="No se pudo agregar el Usuario";	
+			e.printStackTrace();
+		}
+		
+		MV.addObject("Mensaje", Message);
+		MV.setViewName("AltaUsuarios"); 
 		return MV;
 	}
 	
