@@ -119,7 +119,7 @@ public class BibliotecaController {
 		}
 		
 		MV.addObject("Mensaje", Message);
-
+		MV.addObject("listaLibros", service.listadoLibro());
 		MV.setViewName("AltaBiblioteca"); 
 		return MV;
 	}

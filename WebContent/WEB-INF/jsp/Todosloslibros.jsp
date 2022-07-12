@@ -88,7 +88,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <label><b>Idioma:</b></label>
-                                    <input type="text" name="txtIdioma" placeholder="Ingrese el idioma" class="form-control" id="idioma" pattern="[a-zA-Z ]{2,254}" required />
+                                    <input type="text" name="txtIdioma" placeholder="Ingrese el idioma" class="form-control" id="idioma" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required />
                                 </div>
                                 <div class="col-12">
                                     <label><b>Cant. de páginas:</b></label>

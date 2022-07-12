@@ -29,11 +29,11 @@
 						<div class="row">
 							<div class="col-6">
 								<label><b>Nombre:</b></label> 
-								<input type="text" name="txtNombre" placeholder="Ingrese el nombre" class="form-control" pattern="[a-zA-Z ]{2,254}" required/>
+								<input type="text" name="txtNombre" placeholder="Ingrese el nombre" class="form-control" required/>
 							</div>
 							<div class="col-6">
 								<label><b>Password:</b></label> 
-								<input type="password" name="txtPass" placeholder="Ingrese el password" class="form-control" pattern="[a-zA-Z ]{2,254}" required/>
+								<input type="password" name="txtPass" placeholder="Ingrese el password" class="form-control" required/>
 							</div>
 							
 						</div>

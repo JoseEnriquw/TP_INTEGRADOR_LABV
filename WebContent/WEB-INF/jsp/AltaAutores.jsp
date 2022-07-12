@@ -53,9 +53,7 @@
 						<input type="submit" class="btn btn-success form" value="Guardar" id="btnAceptar" />
 							<a class="btn btn-danger form" href="Autores.html" >Volver</a>
 					</div>
-					<div>
-                        <h3>${Mensaje}</h3>
-                    </div>
+					
 				</div>
 			</div>
 		</div>

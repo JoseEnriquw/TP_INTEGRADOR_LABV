@@ -38,7 +38,9 @@
             <label class="lock" for="login-password"><span class="hidden">Contraseña</span></label>
             <input id="login-password" type="password" class="form-input" placeholder="Contraseña" name="passU" required>
           </div>
-  
+  			
+            <a style="color:white;">${Mensaje}</a>
+          	<br/>
           <div class="form-field">
             <input type="submit" value="Ingresar">
           </div>

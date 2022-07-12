@@ -52,7 +52,7 @@
 						<a class="btn btn-danger form" href="Prestamos.html" >Volver</a>
 					</div>
 				</div>
-				 <h3>${Mensaje}</h3>
+				 
 			</div>
 		</div>
 			</form>

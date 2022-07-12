@@ -39,7 +39,7 @@ public class EBiblioteca implements Serializable{
 	@Check(constraints = "estado ='En biblioteca' OR estado='Prestado'")
 	private String estado;
 	
-	@ManyToOne(cascade= {CascadeType. ALL})
+	@ManyToOne()
 	@JoinColumn(name="isbn")
 	private ELibro libro ;
 

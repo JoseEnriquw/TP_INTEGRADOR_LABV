@@ -31,7 +31,7 @@
 						</div>
 						<div class="col-6">
 							<label><b>Idioma:</b></label> <input type="text" name="txtIdioma"
-								placeholder="Ingrese el idioma" class="form-control" pattern="[a-zA-Z ]{2,254}" required />
+								placeholder="Ingrese el idioma" class="form-control" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required />
 						</div>
 					</div>
 					<div class="row">

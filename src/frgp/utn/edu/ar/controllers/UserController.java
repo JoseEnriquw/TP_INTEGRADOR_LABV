@@ -59,12 +59,13 @@ public class UserController {
 				return MV;
 			}
 			else {
-				Message=" Contraseña incorrecta";
+				Message="Usuario o contraseña incorrecta";
 			}
 		
 		}
 		catch(Exception e)
 		{
+			Message="Usuario o contraseña incorrecta";
 			e.printStackTrace();
 		}
 		

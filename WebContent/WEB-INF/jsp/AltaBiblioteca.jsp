@@ -48,9 +48,7 @@
 						<input type="submit" class="btn btn-success form" value="Guardar" />
 							<a class="btn btn-danger form" href="Biblioteca.html" >Volver</a>
 					</div>
-					<div>
-                        <h3>${Mensaje}</h3>
-                    </div>
+					
 				</div>
 			</div>
 		</div>
